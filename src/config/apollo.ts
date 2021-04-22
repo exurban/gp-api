@@ -15,13 +15,9 @@ export default async function () {
   // await connectToLocalDB();
   await connectToRemoteDB();
 
-  console.log(`${__dirname}`);
+  const pathname = path.join(__dirname, '..', 'graphql/resolvers/**/*.{ts,js}');
 
-  const pathname = path.join(
-    __dirname,
-    '../..',
-    'src/graphql/resolvers/**/*.{ts,js}'
-  );
+  console.log(`resolvers are at: ${pathname}`);
 
   const schema = await buildSchema({
     resolvers: [pathname],
