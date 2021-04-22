@@ -12,7 +12,6 @@ export const connectToLocalDB = async () => {
   console.log(`Connecting to local db...`);
   const connection = await createConnection({
     type: 'postgres',
-    synchronize: true,
     logging: false,
     namingStrategy: new SnakeNamingStrategy(),
     name: 'default',
@@ -21,6 +20,7 @@ export const connectToLocalDB = async () => {
     username: 'postgres',
     password: 'postgres',
     database: 'photos',
+    synchronize: true,
     entities: [
       'src/graphql/entities/*{.ts,.js}',
       'build/graphql/entities/*{.ts,.js}',
@@ -36,7 +36,6 @@ export const connectToRemoteDB = async () => {
   console.log(`connecting to remote at ${process.env.DATABASE_URL}`);
   const connection = await createConnection({
     type: 'postgres',
-    synchronize: true,
     logging: false,
     namingStrategy: new SnakeNamingStrategy(),
     name: 'default',

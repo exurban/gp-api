@@ -27,7 +27,7 @@ export default class User extends BaseEntity {
 
   @Field({ nullable: true })
   @Column({ type: 'timestamptz', nullable: true })
-  email_verified: Date;
+  emailVerified: Date;
 
   @Field({ nullable: true })
   @Column({ type: 'varchar', nullable: true })

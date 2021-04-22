@@ -7,7 +7,7 @@ type User {
   id: ID!
   name: String!
   email: String!
-  email_verified: DateTime
+  emailVerified: DateTime
   image: String
   roles: [String!]!
   createdAt: DateTime!
@@ -17,7 +17,17 @@ type User {
 # The javascript `Date` as string. Type represents date and time as the ISO Date string.
 scalar DateTime
 
+input GetApiTokenInput {
+  userId: Float!
+  email: String!
+}
+
 type Query {
   users: [User!]!
   user(id: Int!): User!
+  me: Int!
+}
+
+type Mutation {
+  getApiToken(input: GetApiTokenInput!): String!
 }
