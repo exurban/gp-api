@@ -1,7 +1,7 @@
 import { AuthChecker } from 'type-graphql';
 
 type UserToken = {
-  iss: string;
+  // iss: string;
   sub: string;
   aud: string[];
   iat: Date;
