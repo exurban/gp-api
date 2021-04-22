@@ -9,6 +9,10 @@
     "rimraf": "./node_modules/rimraf/bin.js",
     "start": "yarn build && node build/index.js"
   },
+  "engines": {
+    "node": "15.13.0",
+    "npm": "7.7.6"
+  },
   "dependencies": {
     "apollo-server-express": "^2.23.0",
     "auth0": "^2.34.2",
