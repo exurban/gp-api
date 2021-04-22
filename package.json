@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon",
-    "build": "rimraf ./build && tsc",
+    "build": "tsc",
     "start": "yarn build && node build/index.js"
   },
   "dependencies": {
