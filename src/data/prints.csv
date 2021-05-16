@@ -1,0 +1,46 @@
+id,displayName,type,printSku,dimension1,dimension2,cost,basePrice,priceModifier
+1,Exhibition Paper (12” x 12”),paper,exh1212,12,12,38.7,40,1
+2,Exhibition Paper (12” x 18”),paper,exh1218,12,18,44,45,1
+3,Exhibition Paper (12” x 24”),paper,exh1224,12,24,49.3,50,1
+4,Exhibition Paper (12” x 36”),paper,exh1236,12,36,66,70,1
+5,Exhibition Paper (16” x 16”),paper,exh1616,16,16,46.9,50,1
+6,Exhibition Paper (16” x 20”),paper,exh1620,16,20,51.7,55,1
+7,Exhibition Paper (16” x 24”),paper,exh1624,16,24,56.4,60,1
+8,Exhibition Paper (16” x 32”),paper,exh1632,16,32,65.9,70,1
+9,Exhibition Paper (16” x 48”),paper,exh1648,16,48,90.8,95,1
+10,Exhibition Paper (20” x 20”),paper,exh2020,20,20,57.6,60,1
+11,Exhibition Paper (20” x 24”),paper,exh2024,20,24,63.5,70,1
+12,Exhibition Paper (20” x 30”),paper,exh2030,20,30,85.1,90,1
+13,Exhibition Paper (20” x 40”),paper,exh2040,20,40,99.9,105,1
+14,Exhibition Paper (20” x 60”),paper,exh2060,20,60,129.4,140,1
+15,Exhibition Paper (24” x 24”),paper,exh2424,24,24,70.6,75,1
+16,Exhibition Paper (24” x 30”),paper,exh2430,24,30,93.9,100,1
+17,Exhibition Paper (24” x 36”),paper,exh2436,24,36,104.6,110,1
+18,Exhibition Paper (24” x 48”),paper,exh2448,24,48,125.9,130,1
+19,Exhibition Paper (24” x 72”),paper,exh2472,24,72,168.5,175,1
+20,Exhibition Paper (30” x 30”),paper,exh3030,30,30,107.3,115,1
+21,Exhibition Paper (30” x 40”),paper,exh3040,30,40,135.8,145,1
+22,Exhibition Paper (30” x 45”),paper,exh3045,30,45,144.5,150,1
+23,Exhibition Paper (30” x 60”),paper,exh3060,30,60,191.2,200,1
+24,Exhibition Paper (30” x 90”),paper,exh3090,30,90,257.8,275,1
+25,Aluminum (12” x 12”),alu,alu1212,12,12,49,50,1
+26,Aluminum (12” x 18”),alu,alu1218,12,18,72.5,75,1
+27,Aluminum (12” x 24”),alu,alu1224,12,24,88,90,1
+28,Aluminum (12” x 36”),alu,alu1236,12,36,119,120,1
+29,Aluminum (16” x 16”),alu,alu1616,16,16,64.5,65,1
+30,Aluminum (16” x 20”),alu,alu1620,16,20,89,90,1
+31,Aluminum (16” x 24”),alu,alu1624,16,24,110,115,1
+34,Aluminum (20” x 20”),alu,alu2020,20,20,114,120,1
+35,Aluminum (20” x 24”),alu,alu2024,20,24,121,130,1
+36,Aluminum (20” x 30”),alu,alu2030,20,30,153,155,1
+37,Aluminum (20” x 40”),alu,alu2040,20,40,227,230,1
+38,Aluminum (20” x 60”),alu,alu2060,20,60,325,330,1
+39,Aluminum (24” x 24”),alu,alu2424,24,24,163,170,1
+40,Aluminum (24” x 30”),alu,alu2430,24,30,210,215,1
+41,Aluminum (24” x 36”),alu,alu2436,24,36,246,250,1
+42,Aluminum (24” x 48”),alu,alu2448,24,48,333,340,1
+44,Aluminum (30” x 30”),alu,alu3030,30,30,251,260,1
+45,Aluminum (30” x 40”),alu,alu3040,30,40,311,315,1
+46,Aluminum (30” x 45”),alu,alu3045,30,45,355,360,1
+47,Aluminum (30” x 60”),alu,alu3060,30,60,417,425,1
+48,Aluminum (30” x 90”),alu,alu3090,30,90,615,625,1

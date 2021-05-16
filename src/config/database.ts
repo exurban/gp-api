@@ -23,7 +23,7 @@ export const connectToLocalDB = async () => {
     synchronize: true,
     entities: [
       'src/graphql/entities/*{.ts,.js}',
-      'build/graphql/entities/*{.ts,.js}',
+      'build/src/graphql/entities/*{.ts,.js}',
     ],
   });
 
@@ -47,7 +47,7 @@ export const connectToRemoteDB = async () => {
         rejectUnauthorized: false,
       },
     },
-    entities: ['build/graphql/entities/*{.ts,.js}'],
+    entities: ['build/src/graphql/entities/*{.ts,.js}'],
   });
 
   if (connection) {

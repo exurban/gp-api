@@ -5,9 +5,14 @@ import {
   CreateDateColumn,
   Entity,
   Index,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import UserFavorite from './UserFavorite';
+import Product from './Product';
+import Order from './Order';
 
 @ObjectType()
 @Entity({ name: 'users' })
@@ -37,6 +42,24 @@ export default class User extends BaseEntity {
   @Field(() => [String])
   @Column('simple-array', { default: 'USER' })
   roles: string[];
+
+  @Field(() => Boolean)
+  @Column({ type: 'boolean', default: false })
+  isSubscribed: boolean;
+
+  @Field(() => [UserFavorite])
+  @OneToMany(() => UserFavorite, (fav) => fav.user)
+  userFavorites: Promise<UserFavorite[]>;
+
+  @Field(() => [Order])
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Promise<Order[]>;
+
+  @Field(() => [Product], { nullable: true })
+  @OneToMany(() => Product, (product) => product.shoppingBag, {
+    nullable: true,
+  })
+  shoppingBagItems?: Product[];
 
   @Field()
   @CreateDateColumn({ type: 'timestamptz' })

@@ -1,0 +1,170 @@
+id,sortIndex,productImageId,displayName,description,material,color,printType,frameSku,dimension1,dimension2,cost,basePrice,priceModifier
+1,1,4,Black Wood,Black Wood Frame (12” x 12”),wood,black,paper,wfbl1212,12,12,63.5,65,1
+2,1,4,Black Wood,Black Wood Frame (12” x 18”),wood,black,paper,wfbl1218,12,18,61.75,65,1
+3,1,4,Black Wood,Black Wood Frame (12” x 24”),wood,black,paper,wfbl1224,12,24,66.5,70,1
+4,1,4,Black Wood,Black Wood Frame (12” x 36”),wood,black,paper,wfbl1236,12,36,81.75,85,1
+5,1,4,Black Wood,Black Wood Frame (16” x 16”),wood,black,paper,wfbl1616,16,16,54.75,60,1
+6,1,4,Black Wood,Black Wood Frame (16” x 20”),wood,black,paper,wfbl1620,16,20,60.75,65,1
+7,1,4,Black Wood,Black Wood Frame (16” x 24”),wood,black,paper,wfbl1624,16,24,69.5,75,1
+8,1,4,Black Wood,Black Wood Frame (20” x 20”),wood,black,paper,wfbl2020,20,20,68.75,70,1
+9,1,4,Black Wood,Black Wood Frame (20” x 24”),wood,black,paper,wfbl2024,20,24,75.5,80,1
+10,1,4,Black Wood,Black Wood Frame (20” x 30”),wood,black,paper,wfbl2030,20,30,81.75,85,1
+11,1,4,Black Wood,Black Wood Frame (24” x 24”),wood,black,paper,wfbl2424,24,24,78.75,80,1
+12,1,4,Black Wood,Black Wood Frame (24” x 30”),wood,black,paper,wfbl2430,24,30,79.75,85,1
+13,1,4,Black Wood,Black Wood Frame (24” x 36”),wood,black,paper,wfbl2436,24,36,87.75,95,1
+14,2,5,Mocha Wood,Mocha Wood Frame (12” x 12”),wood,mocha,paper,wfmo1212,12,12,63.5,65,1
+15,2,5,Mocha Wood,Mocha Wood Frame (12” x 18”),wood,mocha,paper,wfmo1218,12,18,61.75,65,1
+16,2,5,Mocha Wood,Mocha Wood Frame (12” x 24”),wood,mocha,paper,wfmo1224,12,24,66.5,70,1
+17,2,5,Mocha Wood,Mocha Wood Frame (12” x 36”),wood,mocha,paper,wfmo1236,12,36,81.75,85,1
+18,2,5,Mocha Wood,Mocha Wood Frame (16” x 16”),wood,mocha,paper,wfmo1616,16,16,54.75,60,1
+19,2,5,Mocha Wood,Mocha Wood Frame (16” x 20”),wood,mocha,paper,wfmo1620,16,20,60.75,65,1
+20,2,5,Mocha Wood,Mocha Wood Frame (16” x 24”),wood,mocha,paper,wfmo1624,16,24,69.5,75,1
+21,2,5,Mocha Wood,Mocha Wood Frame (20” x 20”),wood,mocha,paper,wfmo2020,20,20,68.75,70,1
+22,2,5,Mocha Wood,Mocha Wood Frame (20” x 24”),wood,mocha,paper,wfmo2024,20,24,75.5,80,1
+23,2,5,Mocha Wood,Mocha Wood Frame (20” x 30”),wood,mocha,paper,wfmo2030,20,30,81.75,85,1
+24,2,5,Mocha Wood,Mocha Wood Frame (24” x 24”),wood,mocha,paper,wfmo2424,24,24,78.75,80,1
+25,2,5,Mocha Wood,Mocha Wood Frame (24” x 30”),wood,mocha,paper,wfmo2430,24,30,79.75,85,1
+26,2,5,Mocha Wood,Mocha Wood Frame (24” x 36”),wood,mocha,paper,wfmo2436,24,36,87.75,95,1
+27,3,6,Cherry Wood,Cherry Wood Frame (12” x 12”),wood,cherry,paper,wfch1212,12,12,63.5,65,1
+28,3,6,Cherry Wood,Cherry Wood Frame (12” x 18”),wood,cherry,paper,wfch1218,12,18,61.75,65,1
+29,3,6,Cherry Wood,Cherry Wood Frame (12” x 24”),wood,cherry,paper,wfch1224,12,24,66.5,70,1
+30,3,6,Cherry Wood,Cherry Wood Frame (12” x 36”),wood,cherry,paper,wfch1236,12,36,81.75,85,1
+31,3,6,Cherry Wood,Cherry Wood Frame (16” x 16”),wood,cherry,paper,wfch1616,16,16,54.75,60,1
+32,3,6,Cherry Wood,Cherry Wood Frame (16” x 20”),wood,cherry,paper,wfch1620,16,20,60.75,65,1
+33,3,6,Cherry Wood,Cherry Wood Frame (16” x 24”),wood,cherry,paper,wfch1624,16,24,69.5,75,1
+34,3,6,Cherry Wood,Cherry Wood Frame (20” x 20”),wood,cherry,paper,wfch2020,20,20,68.75,70,1
+35,3,6,Cherry Wood,Cherry Wood Frame (20” x 24”),wood,cherry,paper,wfch2024,20,24,75.5,80,1
+36,3,6,Cherry Wood,Cherry Wood Frame (20” x 30”),wood,cherry,paper,wfch2030,20,30,81.75,85,1
+37,3,6,Cherry Wood,Cherry Wood Frame (24” x 24”),wood,cherry,paper,wfch2424,24,24,78.75,80,1
+38,3,6,Cherry Wood,Cherry Wood Frame (24” x 30”),wood,cherry,paper,wfch2430,24,30,79.75,85,1
+39,3,6,Cherry Wood,Cherry Wood Frame (24” x 36”),wood,cherry,paper,wfch2436,24,36,87.75,95,1
+40,4,7,Natural Wood,Natural Wood Frame (12” x 12”),wood,natural,paper,wfna1212,12,12,63.5,65,1
+41,4,7,Natural Wood,Natural Wood Frame (12” x 18”),wood,natural,paper,wfna1218,12,18,61.75,65,1
+42,4,7,Natural Wood,Natural Wood Frame (12” x 24”),wood,natural,paper,wfna1224,12,24,66.5,70,1
+43,4,7,Natural Wood,Natural Wood Frame (12” x 36”),wood,natural,paper,wfna1236,12,36,81.75,85,1
+44,4,7,Natural Wood,Natural Wood Frame (16” x 16”),wood,natural,paper,wfna1616,16,16,54.75,60,1
+45,4,7,Natural Wood,Natural Wood Frame (16” x 20”),wood,natural,paper,wfna1620,16,20,60.75,65,1
+46,4,7,Natural Wood,Natural Wood Frame (16” x 24”),wood,natural,paper,wfna1624,16,24,69.5,75,1
+47,4,7,Natural Wood,Natural Wood Frame (20” x 20”),wood,natural,paper,wfna2020,20,20,68.75,70,1
+48,4,7,Natural Wood,Natural Wood Frame (20” x 24”),wood,natural,paper,wfna2024,20,24,75.5,80,1
+49,4,7,Natural Wood,Natural Wood Frame (20” x 30”),wood,natural,paper,wfna2030,20,30,81.75,85,1
+50,4,7,Natural Wood,Natural Wood Frame (24” x 24”),wood,natural,paper,wfna2424,24,24,78.75,80,1
+51,4,7,Natural Wood,Natural Wood Frame (24” x 30”),wood,natural,paper,wfna2430,24,30,79.75,85,1
+52,4,7,Natural Wood,Natural Wood Frame (24” x 36”),wood,natural,paper,wfna2436,24,36,87.75,95,1
+53,5,8,White Wood,White Wood Frame (12” x 12”),wood,white,paper,wfwh1212,12,12,63.5,65,1
+54,5,8,White Wood,White Wood Frame (12” x 18”),wood,white,paper,wfwh1218,12,18,61.75,65,1
+55,5,8,White Wood,White Wood Frame (12” x 24”),wood,white,paper,wfwh1224,12,24,66.5,70,1
+56,5,8,White Wood,White Wood Frame (12” x 36”),wood,white,paper,wfwh1236,12,36,81.75,85,1
+57,5,8,White Wood,White Wood Frame (16” x 16”),wood,white,paper,wfwh1616,16,16,54.75,60,1
+58,5,8,White Wood,White Wood Frame (16” x 20”),wood,white,paper,wfwh1620,16,20,60.75,65,1
+59,5,8,White Wood,White Wood Frame (16” x 24”),wood,white,paper,wfwh1624,16,24,69.5,75,1
+60,5,8,White Wood,White Wood Frame (20” x 20”),wood,white,paper,wfwh2020,20,20,68.75,70,1
+61,5,8,White Wood,White Wood Frame (20” x 24”),wood,white,paper,wfwh2024,20,24,75.5,80,1
+62,5,8,White Wood,White Wood Frame (20” x 30”),wood,white,paper,wfwh2030,20,30,81.75,85,1
+63,5,8,White Wood,White Wood Frame (24” x 24”),wood,white,paper,wfwh2424,24,24,78.75,80,1
+64,5,8,White Wood,White Wood Frame (24” x 30”),wood,white,paper,wfwh2430,24,30,79.75,85,1
+65,5,8,White Wood,White Wood Frame (24” x 36”),wood,white,paper,wfwh2436,24,36,87.75,95,1
+66,6,9,Black Metal,Black Metal Frame (12” x 12”),metal,black,paper,mfbl1212,12,12,63.5,65,1
+67,6,9,Black Metal,Black Metal Frame (12” x 18”),metal,black,paper,mfbl1218,12,18,61.75,65,1
+68,6,9,Black Metal,Black Metal Frame (12” x 24”),metal,black,paper,mfbl1224,12,24,66.5,70,1
+69,6,9,Black Metal,Black Metal Frame (12” x 36”),metal,black,paper,mfbl1236,12,36,81.75,85,1
+70,6,9,Black Metal,Black Metal Frame (16” x 16”),metal,black,paper,mfbl1616,16,16,54.75,60,1
+71,6,9,Black Metal,Black Metal Frame (16” x 20”),metal,black,paper,mfbl1620,16,20,60.75,65,1
+72,6,9,Black Metal,Black Metal Frame (16” x 24”),metal,black,paper,mfbl1624,16,24,69.5,75,1
+73,6,9,Black Metal,Black Metal Frame (20” x 20”),metal,black,paper,mfbl2020,20,20,68.75,70,1
+74,6,9,Black Metal,Black Metal Frame (20” x 24”),metal,black,paper,mfbl2024,20,24,75.5,80,1
+75,6,9,Black Metal,Black Metal Frame (20” x 30”),metal,black,paper,mfbl2030,20,30,81.75,85,1
+76,6,9,Black Metal,Black Metal Frame (24” x 24”),metal,black,paper,mfbl2424,24,24,78.75,80,1
+77,6,9,Black Metal,Black Metal Frame (24” x 30”),metal,black,paper,mfbl2430,24,30,79.75,85,1
+78,6,9,Black Metal,Black Metal Frame (24” x 36”),metal,black,paper,mfbl2436,24,36,87.75,95,1
+79,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (12” x 12”),metal,dark pewter,paper,mfdp1212,12,12,63.5,65,1
+80,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (12” x 18”),metal,dark pewter,paper,mfdp1218,12,18,61.75,65,1
+81,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (12” x 24”),metal,dark pewter,paper,mfdp1224,12,24,66.5,70,1
+82,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (12” x 36”),metal,dark pewter,paper,mfdp1236,12,36,81.75,85,1
+83,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (16” x 16”),metal,dark pewter,paper,mfdp1616,16,16,54.75,60,1
+84,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (16” x 20”),metal,dark pewter,paper,mfdp1620,16,20,60.75,65,1
+85,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (16” x 24”),metal,dark pewter,paper,mfdp1624,16,24,69.5,75,1
+86,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (20” x 20”),metal,dark pewter,paper,mfdp2020,20,20,68.75,70,1
+87,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (20” x 24”),metal,dark pewter,paper,mfdp2024,20,24,75.5,80,1
+88,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (20” x 30”),metal,dark pewter,paper,mfdp2030,20,30,81.75,85,1
+89,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (24” x 24”),metal,dark pewter,paper,mfdp2424,24,24,78.75,80,1
+90,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (24” x 30”),metal,dark pewter,paper,mfdp2430,24,30,79.75,85,1
+91,7,10,Dark Pewter Metal,Dark Pewter Metal Frame (24” x 36”),metal,dark pewter,paper,mfdp2436,24,36,87.75,95,1
+92,8,11,Light Pewter Metal,Light Pewter Metal Frame (12” x 12”),metal,light pewter,paper,mfsi1212,12,12,63.5,65,1
+93,8,11,Light Pewter Metal,Light Pewter Metal Frame (12” x 18”),metal,light pewter,paper,mflp1218,12,18,61.75,65,1
+94,8,11,Light Pewter Metal,Light Pewter Metal Frame (12” x 24”),metal,light pewter,paper,mflp1224,12,24,66.5,70,1
+95,8,11,Light Pewter Metal,Light Pewter Metal Frame (12” x 36”),metal,light pewter,paper,mflp1236,12,36,81.75,85,1
+96,8,11,Light Pewter Metal,Light Pewter Metal Frame (16” x 16”),metal,light pewter,paper,mflp1616,16,16,54.75,60,1
+97,8,11,Light Pewter Metal,Light Pewter Metal Frame (16” x 20”),metal,light pewter,paper,mflp1620,16,20,60.75,65,1
+98,8,11,Light Pewter Metal,Light Pewter Metal Frame (16” x 24”),metal,light pewter,paper,mflp1624,16,24,69.5,75,1
+99,8,11,Light Pewter Metal,Light Pewter Metal Frame (20” x 20”),metal,light pewter,paper,mflp2020,20,20,68.75,70,1
+100,8,11,Light Pewter Metal,Light Pewter Metal Frame (20” x 24”),metal,light pewter,paper,mflp2024,20,24,75.5,80,1
+101,8,11,Light Pewter Metal,Light Pewter Metal Frame (20” x 30”),metal,light pewter,paper,mflp2030,20,30,81.75,85,1
+102,8,11,Light Pewter Metal,Light Pewter Metal Frame (24” x 24”),metal,light pewter,paper,mflp2424,24,24,78.75,80,1
+103,8,11,Light Pewter Metal,Light Pewter Metal Frame (24” x 30”),metal,light pewter,paper,mflp2430,24,30,79.75,85,1
+104,8,11,Light Pewter Metal,Light Pewter Metal Frame (24” x 36”),metal,light pewter,paper,mflp2436,24,36,87.75,95,1
+105,9,12,Silver Metal,Silver Metal Frame (12” x 12”),metal,silver,paper,mfsi1212,12,12,63.5,65,1
+106,9,12,Silver Metal,Silver Metal Frame (12” x 18”),metal,silver,paper,mfsi1218,12,18,61.75,65,1
+107,9,12,Silver Metal,Silver Metal Frame (12” x 24”),metal,silver,paper,mfsi1224,12,24,66.5,70,1
+108,9,12,Silver Metal,Silver Metal Frame (12” x 36”),metal,silver,paper,mfsi1236,12,36,81.75,85,1
+109,9,12,Silver Metal,Silver Metal Frame (16” x 16”),metal,silver,paper,mfsi1616,16,16,54.75,60,1
+110,9,12,Silver Metal,Silver Metal Frame (16” x 20”),metal,silver,paper,mfsi1620,16,20,60.75,65,1
+111,9,12,Silver Metal,Silver Metal Frame (16” x 24”),metal,silver,paper,mfsi1624,16,24,69.5,75,1
+112,9,12,Silver Metal,Silver Metal Frame (20” x 20”),metal,silver,paper,mfsi2020,20,20,68.75,70,1
+113,9,12,Silver Metal,Silver Metal Frame (20” x 24”),metal,silver,paper,mfsi2024,20,24,75.5,80,1
+114,9,12,Silver Metal,Silver Metal Frame (20” x 30”),metal,silver,paper,mfsi2030,20,30,81.75,85,1
+115,9,12,Silver Metal,Silver Metal Frame (24” x 24”),metal,silver,paper,mfsi2424,24,24,78.75,80,1
+116,9,12,Silver Metal,Silver Metal Frame (24” x 30”),metal,silver,paper,mfsi2430,24,30,79.75,85,1
+117,9,12,Silver Metal,Silver Metal Frame (24” x 36”),metal,silver,paper,mfsi2436,24,36,87.75,95,1
+118,10,13,Black Slim Metal,Black Slim Metal Frame (12” x 12”),metal,black,alu,ffblmt1212,12,12,63.5,65,1
+119,10,13,Black Slim Metal,Black Slim Metal Frame (12” x 18”),metal,black,alu,ffblmt1218,12,18,61.75,65,1
+120,10,13,Black Slim Metal,Black Slim Metal Frame (12” x 24”),metal,black,alu,ffblmt1224,12,24,66.5,70,1
+121,10,13,Black Slim Metal,Black Slim Metal Frame (12” x 36”),metal,black,alu,ffblmt1236,12,36,81.75,85,1
+122,10,13,Black Slim Metal,Black Slim Metal Frame (16” x 16”),metal,black,alu,ffblmt1616,16,16,54.75,60,1
+123,10,13,Black Slim Metal,Black Slim Metal Frame (16” x 20”),metal,black,alu,ffblmt1620,16,20,60.75,65,1
+124,10,13,Black Slim Metal,Black Slim Metal Frame (16” x 24”),metal,black,alu,ffblmt1624,16,24,69.5,75,1
+125,10,13,Black Slim Metal,Black Slim Metal Frame (20” x 20”),metal,black,alu,ffblmt2020,20,20,68.75,70,1
+126,10,13,Black Slim Metal,Black Slim Metal Frame (20” x 24”),metal,black,alu,ffblmt2024,20,24,75.5,80,1
+127,10,13,Black Slim Metal,Black Slim Metal Frame (20” x 30”),metal,black,alu,ffblmt2030,20,30,81.75,85,1
+128,10,13,Black Slim Metal,Black Slim Metal Frame (24” x 24”),metal,black,alu,ffblmt2424,24,24,78.75,80,1
+129,10,13,Black Slim Metal,Black Slim Metal Frame (24” x 30”),metal,black,alu,ffblmt2430,24,30,79.75,85,1
+130,10,13,Black Slim Metal,Black Slim Metal Frame (24” x 36”),metal,black,alu,ffblmt2436,24,36,87.75,95,1
+131,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (12” x 12”),metal,light pewter,alu,fflpmt1212,12,12,63.5,65,1
+132,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (12” x 18”),metal,light pewter,alu,fflpmt1218,12,18,61.75,65,1
+133,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (12” x 24”),metal,light pewter,alu,fflpmt1224,12,24,66.5,70,1
+134,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (12” x 36”),metal,light pewter,alu,fflpmt1236,12,36,81.75,85,1
+135,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (16” x 16”),metal,light pewter,alu,fflpmt1616,16,16,54.75,60,1
+136,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (16” x 20”),metal,light pewter,alu,fflpmt1620,16,20,60.75,65,1
+137,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (16” x 24”),metal,light pewter,alu,fflpmt1624,16,24,69.5,75,1
+138,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (20” x 20”),metal,light pewter,alu,fflpmt2020,20,20,68.75,70,1
+139,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (20” x 24”),metal,light pewter,alu,fflpmt2024,20,24,75.5,80,1
+140,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (20” x 30”),metal,light pewter,alu,fflpmt2030,20,30,81.75,85,1
+141,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (24” x 24”),metal,light pewter,alu,fflpmt2424,24,24,78.75,80,1
+142,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (24” x 30”),metal,light pewter,alu,fflpmt2430,24,30,79.75,85,1
+143,11,14,Light Pewter Slim Metal,Light Pewter Slim Metal Frame (24” x 36”),metal,light pewter,alu,fflpmt2436,24,36,87.75,95,1
+144,12,15,Black Slim Wood,Black Slim Wood Frame (12” x 12”),wood,black,alu,ffblwd1212,12,12,63.5,65,1
+145,12,15,Black Slim Wood,Black Slim Wood Frame (12” x 18”),wood,black,alu,ffblwd1218,12,18,61.75,65,1
+146,12,15,Black Slim Wood,Black Slim Wood Frame (12” x 24”),wood,black,alu,ffblwd1224,12,24,66.5,70,1
+147,12,15,Black Slim Wood,Black Slim Wood Frame (12” x 36”),wood,black,alu,ffblwd1236,12,36,81.75,85,1
+148,12,15,Black Slim Wood,Black Slim Wood Frame (16” x 16”),wood,black,alu,ffblwd1616,16,16,54.75,60,1
+149,12,15,Black Slim Wood,Black Slim Wood Frame (16” x 20”),wood,black,alu,ffblwd1620,16,20,60.75,65,1
+150,12,15,Black Slim Wood,Black Slim Wood Frame (16” x 24”),wood,black,alu,ffblwd1624,16,24,69.5,75,1
+151,12,15,Black Slim Wood,Black Slim Wood Frame (20” x 20”),wood,black,alu,ffblwd2020,20,20,68.75,70,1
+152,12,15,Black Slim Wood,Black Slim Wood Frame (20” x 24”),wood,black,alu,ffblwd2024,20,24,75.5,80,1
+153,12,15,Black Slim Wood,Black Slim Wood Frame (20” x 30”),wood,black,alu,ffblwd2030,20,30,81.75,85,1
+154,12,15,Black Slim Wood,Black Slim Wood Frame (24” x 24”),wood,black,alu,ffblwd2424,24,24,78.75,80,1
+155,12,15,Black Slim Wood,Black Slim Wood Frame (24” x 30”),wood,black,alu,ffblwd2430,24,30,79.75,85,1
+156,12,15,Black Slim Wood,Black Slim Wood Frame (24” x 36”),wood,black,alu,ffblwd2436,24,36,87.75,95,1
+157,13,16,White Slim Wood,White Slim Wood Frame (12” x 12”),wood,white,alu,ffwhwd1212,12,12,63.5,65,1
+158,13,16,White Slim Wood,White Slim Wood Frame (12” x 18”),wood,white,alu,ffwhwd1218,12,18,61.75,65,1
+159,13,16,White Slim Wood,White Slim Wood Frame (12” x 24”),wood,white,alu,ffwhwd1224,12,24,66.5,70,1
+160,13,16,White Slim Wood,White Slim Wood Frame (12” x 36”),wood,white,alu,ffwhwd1236,12,36,81.75,85,1
+161,13,16,White Slim Wood,White Slim Wood Frame (16” x 16”),wood,white,alu,ffwhwd1616,16,16,54.75,60,1
+162,13,16,White Slim Wood,White Slim Wood Frame (16” x 20”),wood,white,alu,ffwhwd1620,16,20,60.75,65,1
+163,13,16,White Slim Wood,White Slim Wood Frame (16” x 24”),wood,white,alu,ffwhwd1624,16,24,69.5,75,1
+164,13,16,White Slim Wood,White Slim Wood Frame (20” x 20”),wood,white,alu,ffwhwd2020,20,20,68.75,70,1
+165,13,16,White Slim Wood,White Slim Wood Frame (20” x 24”),wood,white,alu,ffwhwd2024,20,24,75.5,80,1
+166,13,16,White Slim Wood,White Slim Wood Frame (20” x 30”),wood,white,alu,ffwhwd2030,20,30,81.75,85,1
+167,13,16,White Slim Wood,White Slim Wood Frame (24” x 24”),wood,white,alu,ffwhwd2424,24,24,78.75,80,1
+168,13,16,White Slim Wood,White Slim Wood Frame (24” x 30”),wood,white,alu,ffwhwd2430,24,30,79.75,85,1
+169,13,16,White Slim Wood,White Slim Wood Frame (24” x 36”),wood,white,alu,ffwhwd2436,24,36,87.75,95,1

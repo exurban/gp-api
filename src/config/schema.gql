@@ -3,13 +3,24 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-type User {
+type Location {
+  # The ID of the location. It is unique, numeric and automatically-generated.
   id: ID!
+
+  # The name of the Location. It is required and must be unique.
   name: String!
-  email: String!
-  emailVerified: DateTime
-  image: String
-  roles: [String!]!
+
+  # A tag for the Location. It is required and must be unique.
+  tag: String!
+
+  # A description of the location, used as a vignette at the top of the Location's photos page.
+  description: String!
+
+  # Nullable. An array of photos taken at the Location.
+  photos: [Photo!]
+
+  # Count of photos taken at the location on the site.
+  countOfPhotos: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -17,17 +28,1442 @@ type User {
 # The javascript `Date` as string. Type represents date and time as the ISO Date string.
 scalar DateTime
 
+type Collection {
+  id: ID!
+  name: String!
+  tag: String!
+  description: String!
+  photosInCollection: [PhotoCollection!]
+
+  # Count of photos in the collection.
+  countOfPhotos: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PhotoCollection {
+  collectionId: Collection!
+  collection: Collection!
+  photoId: Photo!
+  photo: Photo!
+}
+
+type PhotoImage {
+  id: ID!
+  imageName: String!
+  jpegUrl: String!
+  webpUrl: String!
+  altText: String!
+  aspectRatio: String
+  size: String!
+  width: Int!
+  height: Int!
+  isPortrait: Boolean!
+  isPanoramic: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ShareImage {
+  id: ID!
+  imageName: String!
+  fileExtension: String!
+  imageUrl: String!
+  altText: String!
+  aspectRatio: String
+  size: String!
+  width: Int!
+  height: Int!
+  isPortrait: Boolean!
+  isPanoramic: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Print {
+  id: ID!
+  displayName: String!
+  description: String
+  type: String!
+  printSku: String!
+  aspectRatio: String!
+  dimension1: Float!
+  dimension2: Float!
+  cost: Float!
+  shippingCost: Float!
+  basePrice: Float!
+  priceModifier: Float!
+  retailPrice: Float!
+  products: [Product!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Mat {
+  id: ID!
+  sortIndex: Int!
+  displayName: String!
+  description: String
+  color: String!
+  printType: String!
+  matSku: String!
+  aspectRatio: String!
+  dimension1: Float!
+  dimension2: Float!
+  cost: Float!
+  basePrice: Float!
+  priceModifier: Float!
+  retailPrice: Float!
+  productImage: ProductImage
+  products: [Product!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Product {
+  id: ID!
+  photo: Photo!
+  print: Print!
+  mat: Mat
+  frame: Frame
+  shoppingBag: User
+  order: Order!
+  totalRetailPrice: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  productSummary: String!
+}
+
+type Frame {
+  id: ID!
+  sortIndex: Float!
+  displayName: String!
+  description: String
+  material: String!
+  color: String!
+  printType: String!
+  frameSku: String!
+  aspectRatio: String!
+  dimension1: Float!
+  dimension2: Float!
+  cost: Float!
+  basePrice: Float!
+  priceModifier: Float!
+  retailPrice: Float!
+
+  # Optional. An image of the frame.
+  productImage: ProductImage
+  products: [Product!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ProductImage {
+  id: ID!
+  imageName: String!
+  fileExtension: String!
+  imageUrl: String!
+  altText: String!
+  aspectRatio: String
+  size: String!
+  width: Int!
+  height: Int!
+
+  # Optional. Product image for mats.
+  mats: [Mat!]
+
+  # Optional. Product image for frames.
+  frames: [Frame!]
+
+  # Optional. Biographical image for photographer.
+  photographers: [Photographer!]
+  isPortrait: Boolean!
+  isPanoramic: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Photographer {
+  id: ID!
+
+  # The artist's full name
+  name: String!
+
+  # The artist's first name.
+  firstName: String!
+
+  # The artist's last name.
+  lastName: String!
+
+  # The artist's email address.
+  email: String!
+
+  # The Image for the artist's portrait.
+  coverImage: ProductImage
+
+  # The artist's biography.
+  bio: String!
+
+  # Photos attributed to the artist.
+  photos: [Photo!]
+
+  # Count of photos attributed to the photographer on the site.
+  countOfPhotos: Int!
+
+  # Date record was created.
+  createdAt: DateTime!
+
+  # Date record was most recently updated.
+  updatedAt: DateTime!
+}
+
+type Subject {
+  id: ID!
+  sortIndex: Float!
+  name: String!
+  description: String
+  photosOfSubject: [PhotoSubject!]
+
+  # Count of photos of the subject on the site.
+  countOfPhotos: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PhotoSubject {
+  subjectId: Subject!
+  subject: Subject!
+  photoId: Photo!
+  photo: Photo!
+}
+
+type Tag {
+  id: ID!
+  sortIndex: Int!
+
+  # The name of the tag.
+  name: String!
+
+  # Optional. A description of the tag used in connection with the vignette at the top of the Tag's photo page.
+  description: String!
+
+  # A connection through a join table to the photos tagged with the tag.
+  photosWithTag: [PhotoTag!]
+
+  # Count of photos of the tag on the site.
+  countOfPhotos: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PhotoTag {
+  tagId: Tag!
+  tag: Tag!
+  photoId: Photo!
+  photo: Photo!
+}
+
+type Photo {
+  id: ID!
+  sku: Int!
+  sortIndex: Int!
+  title: String!
+  description: String!
+  isFeatured: Boolean!
+  isLimitedEdition: Boolean!
+  isHidden: Boolean!
+  rating: Int!
+  printTypes: [String!]!
+  basePrice12: Float!
+  priceModifier12: Float!
+  retailPrice12: Float!
+  basePrice16: Float!
+  priceModifier16: Float!
+  retailPrice16: Float!
+  basePrice20: Float!
+  priceModifier20: Float!
+  retailPrice20: Float!
+  basePrice24: Float!
+  priceModifier24: Float!
+  retailPrice24: Float!
+  basePrice30: Float!
+  priceModifier30: Float!
+  retailPrice30: Float!
+  photographer: Photographer
+  location: Location
+
+  # Primary image for the photo with a maximum dimension of 1,400px, saved to .webp format and converted to .jpeg for email sharing.
+  photoImage: PhotoImage
+
+  # A 1,200px x 630px image for sharing.
+  shareImage: ShareImage
+  subjectsInPhoto: [PhotoSubject!]
+  tagsForPhoto: [PhotoTag!]
+  collectionsForPhoto: [PhotoCollection!]
+  favoritedByUsers: [UserFavorite!]
+  products: [Product!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UserFavorite {
+  userId: User!
+  user: User!
+  photoId: Photo!
+  photo: Photo!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  emailVerified: DateTime
+  image: String
+  roles: [String!]!
+  isSubscribed: Boolean!
+  userFavorites: [UserFavorite!]!
+  orders: [Order!]!
+  shoppingBagItems: [Product!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Order {
+  id: ID!
+  orderStatus: OrderStatus!
+  products: [Product!]!
+  shipToAddress: Address!
+  user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# Order status
+enum OrderStatus {
+  PAID
+  PLACED
+  SHIPPED
+  FULFILLED
+  PROBLEM
+}
+
+type Address {
+  id: ID!
+  line1: String!
+  line2: String!
+  city: String!
+  state: String!
+  country: String!
+  postalCode: String!
+  orders: [Order!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SuccessMessageResponse {
+  success: Boolean!
+  message: String!
+}
+
+type UpdateCollectionsFromCsvResponse {
+  success: Boolean!
+  message: String!
+  updated: Int
+  inserted: Int
+}
+
+type CollectionsResponse {
+  collections: [Collection!]!
+}
+
+type SearchCollectionsResponse {
+  datalist: [Collection!]!
+}
+
+type AllPhotosInCollectionResponse {
+  collectionInfo: Collection!
+  total: Int!
+  photos: [Photo!]!
+}
+
+type AddCollectionResponse {
+  success: Boolean!
+  message: String!
+  newCollection: Collection
+}
+
+type UpdateCollectionResponse {
+  success: Boolean!
+  message: String!
+  updatedCollection: Collection
+}
+
+type UpdateFramesFromCsvResponse {
+  success: Boolean!
+  message: String!
+  updated: Int!
+  inserted: Int!
+}
+
+type SearchFramesResponse {
+  datalist: [Frame!]!
+}
+
+type AddFrameResponse {
+  success: Boolean!
+  message: String!
+  newFrame: Frame
+}
+
+type UpdateFrameResponse {
+  success: Boolean!
+  message: String!
+  updatedFrame: Frame
+}
+
+type UpdateLocationsFromCsvResponse {
+  success: Boolean!
+  message: String!
+  updated: Int
+  inserted: Int
+}
+
+type LocationsResponse {
+  locations: [Location!]!
+}
+
+type SearchLocationsResponse {
+  datalist: [Location!]!
+}
+
+type AllPhotosAtLocationResponse {
+  locationInfo: Location!
+  total: Int!
+  photos: [Photo!]!
+}
+
+type AddLocationResponse {
+  success: Boolean!
+  message: String!
+  newLocation: Location
+}
+
+type UpdateLocationResponse {
+  success: Boolean!
+  message: String!
+  updatedLocation: Location
+}
+
+type UpdateMatsFromCsvResponse {
+  success: Boolean!
+  message: String!
+  updated: Int
+  inserted: Int
+}
+
+type SearchMatsResponse {
+  datalist: [Mat!]!
+}
+
+type AddMatResponse {
+  success: Boolean!
+  message: String!
+  newMat: Mat
+}
+
+type UpdateMatResponse {
+  success: Boolean!
+  message: String!
+  updatedMat: Mat
+}
+
+type UpdatePhotoImagesFromCsvResponse {
+  success: Boolean!
+  message: String!
+  updated: Int
+  inserted: Int
+}
+
+type AddPhotoImageResponse {
+  success: Boolean!
+  message: String!
+  newPhotoImage: PhotoImage
+}
+
+type UpdatePhotoImageResponse {
+  success: Boolean!
+  message: String!
+  updatedPhotoImage: PhotoImage
+}
+
+type SearchPhotoImagesResponse {
+  datalist: [PhotoImage!]!
+}
+
+type PrintsResponse {
+  success: Boolean!
+  message: String!
+  prints: [Print!]
+}
+
+type MatsResponse {
+  success: Boolean!
+  message: String!
+  mats: [Mat!]
+}
+
+type FinishOptions {
+  prints: [Print!]!
+  mats: [Mat!]!
+  frames: [Frame!]!
+}
+
+type PhotoWithFinishOptionsResponse {
+  success: Boolean!
+  message: String!
+  photo: Photo
+  prints: [Print!]
+  mats: [Mat!]
+  frames: [Frame!]
+}
+
+type UpdatePhotographersFromCsvResponse {
+  success: Boolean!
+  message: String!
+  updated: Int
+  inserted: Int
+}
+
+type SearchPhotographersResponse {
+  datalist: [Photographer!]!
+}
+
+type PhotographersResponse {
+  photographers: [Photographer!]!
+}
+
+type AllPhotosByPhotographerResponse {
+  photographerInfo: Photographer!
+  total: Int!
+  photos: [Photo!]!
+}
+
+type AddPhotographerResponse {
+  success: Boolean!
+  message: String!
+  newPhotographer: Photographer
+}
+
+type UpdatePhotographerResponse {
+  success: Boolean!
+  message: String!
+  updatedPhotographer: Photographer
+}
+
+type UpdatePhotosFromCsvResponse {
+  success: Boolean!
+  message: String!
+  updated: Int
+  inserted: Int
+  deleted: Int
+}
+
+type SelectionOption {
+  id: Int!
+  name: String!
+}
+
+type PhotographerSelectionOption {
+  id: Int!
+  name: String!
+}
+
+type LocationSelectionOption {
+  id: Int!
+  name: String!
+}
+
+type SubjectSelectionOption {
+  id: Int!
+  name: String!
+}
+
+type TagSelectionOption {
+  id: Int!
+  name: String!
+}
+
+type CollectionSelectionOption {
+  id: Int!
+  name: String!
+}
+
+type PhotoEditSelectionOptions {
+  photographers: [PhotographerSelectionOption!]!
+  locations: [LocationSelectionOption!]!
+  subjects: [SubjectSelectionOption!]!
+  tags: [TagSelectionOption!]!
+  collections: [CollectionSelectionOption!]!
+}
+
+type SearchPhotosResponse {
+  datalist: [Photo!]!
+}
+
+type AddPhotoResponse {
+  success: Boolean!
+  message: String!
+  newPhoto: Photo
+}
+
+type UpdatePhotoResponse {
+  success: Boolean!
+  message: String!
+  updatedPhoto: Photo
+}
+
+type AllFeaturedPhotosResponse {
+  total: Int!
+  photos: [Photo!]!
+}
+
+type UpdatePrintsFromCsvResponse {
+  success: Boolean!
+  updated: Int!
+  inserted: Int!
+}
+
+type SearchPrintsResponse {
+  datalist: [Print!]!
+}
+
+type AddPrintResponse {
+  success: Boolean!
+  message: String!
+  newPrint: Print
+}
+
+type UpdatePrintResponse {
+  success: Boolean!
+  message: String!
+  updatedPrint: Print
+}
+
+type UpdateProductImagesFromCsvResponse {
+  success: Boolean!
+  updated: Int!
+  inserted: Int!
+}
+
+type AddProductImageResponse {
+  success: Boolean!
+  message: String!
+  newProductImage: ProductImage
+}
+
+type UpdateProductImageResponse {
+  success: Boolean!
+  message: String!
+  updatedProductImage: ProductImage
+}
+
+type SearchProductImagesResponse {
+  datalist: [ProductImage!]!
+}
+
+type addProductImageToMatResponse {
+  success: Boolean!
+  message: String!
+  productImage: ProductImage
+  mat: Mat
+}
+
+type addProductImageToFrameResponse {
+  success: Boolean!
+  message: String!
+  productImage: ProductImage
+  frame: Frame
+}
+
+type AddProductResponse {
+  success: Boolean!
+  message: String!
+  newProduct: Product
+}
+
+type UpdateProductResponse {
+  success: Boolean!
+  message: String!
+  updatedProduct: Product
+}
+
+type UpdateShareImagesFromCsvResponse {
+  success: Boolean!
+  message: String!
+  updated: Int
+  inserted: Int
+  deleted: Int
+}
+
+type AddShareImageResponse {
+  success: Boolean!
+  message: String!
+  newShareImage: ShareImage
+}
+
+type UpdateShareImageResponse {
+  success: Boolean!
+  message: String!
+  updatedShareImage: ShareImage
+}
+
+type SearchShareImagesResponse {
+  datalist: [ShareImage!]!
+}
+
+type UpdateSubjectsFromCsvResponse {
+  success: Boolean!
+  message: String!
+  updated: Int
+  inserted: Int
+}
+
+type SubjectsResponse {
+  subjects: [Subject!]!
+}
+
+type SearchSubjectsResponse {
+  datalist: [Subject!]!
+}
+
+type AllPhotosOfSubjectResponse {
+  success: Boolean!
+  message: String!
+  subjectInfo: Subject
+  total: Int!
+  photos: [Photo!]!
+}
+
+type AddSubjectResponse {
+  success: Boolean!
+  message: String!
+  newSubject: Subject
+}
+
+type UpdateSubjectResponse {
+  success: Boolean!
+  message: String!
+  updatedSubject: Subject
+}
+
+type UpdateTagsFromCsvResponse {
+  success: Boolean!
+  message: String!
+  updated: Int
+  inserted: Int
+}
+
+type TagsResponse {
+  tags: [Tag!]!
+}
+
+type SearchTagsResponse {
+  datalist: [Tag!]!
+}
+
+type AllPhotosWithTagResponse {
+  tagInfo: Tag!
+  total: Int!
+  photos: [Photo!]!
+}
+
+type AddTagResponse {
+  success: Boolean!
+  message: String!
+  newTag: Tag
+}
+
+type UpdateTagResponse {
+  success: Boolean!
+  message: String!
+  updatedTag: Tag
+}
+
+type FavoritesResponse {
+  # Returns list of Photo objects in user's favorites.
+  photoList: [Photo!]
+}
+
+type AddPhotoToFavoritesResponse {
+  success: Boolean!
+  message: String!
+  addedPhotoWithId: ID
+}
+
+type RemovePhotoFromFavoritesResponse {
+  success: Boolean!
+  message: String!
+  removedPhotoWithId: ID
+}
+
+type ShoppingBagItemsResponse {
+  # Returns list of Products in user's shopping bag.
+  dataList: [Product!]
+}
+
+type AddProductToShoppingBagResponse {
+  success: Boolean!
+  message: String!
+  addedProduct: Product
+}
+
+type UserPreferencesResponse {
+  favorites: [UserFavorite!]
+  shoppingBagItems: [Product!]
+}
+
+# Inputs to create a new Collection entity.
+input AddCollectionInput {
+  id: Float
+
+  # Name of the collection. Used in Photo Info links.
+  name: String!
+
+  # A vignette used to introduce the collection.
+  description: String
+}
+
+# Optional inputs to be used to update the Collection Info.
+input UpdateCollectionInput {
+  # An index used to sort the collections.
+  sortIndex: Float
+
+  # Optional. Name of the collection. Used in Photo Info links.
+  name: String
+
+  # Optional. A vignette used to introduce the collection.
+  description: String
+}
+
+input CollectionSearchSortInput {
+  filter: String
+  orderBy: String = "name"
+  direction: SortDirection = ASC
+}
+
+# Sort direction
+enum SortDirection {
+  ASC
+  DESC
+}
+
+input SearchCollectionsInput {
+  searchString: String!
+}
+
+input AllPhotosInCollectionInput {
+  name: String!
+}
+
+input AddFrameInput {
+  id: Float
+  sortIndex: Float!
+  displayName: String!
+  description: String
+  material: String!
+  color: String!
+  printType: String!
+  productImageId: Float
+  frameSku: String!
+  dimension1: Float!
+  dimension2: Float!
+  cost: Float!
+  basePrice: Float!
+  priceModifier: Float!
+}
+
+input UpdateFrameInput {
+  sortIndex: Float
+  displayName: String
+  description: String
+  material: String
+  color: String
+  printType: String
+  productImageId: Float
+  frameSku: String
+  dimension1: Float
+  dimension2: Float
+  cost: Float
+  basePrice: Float
+  priceModifier: Float
+}
+
+input SearchFramesInput {
+  searchString: String!
+}
+
+# Inputs to create a new Location entity.
+input AddLocationInput {
+  id: Float
+  sortIndex: Float!
+
+  # Name of the location. Used in Photo Info links.
+  name: String!
+
+  # An optional string that can be used to refer to the location.
+  tag: String
+
+  # A vignette used to introduce the location.
+  description: String
+}
+
+# Optional inputs to be used to update the Location Info.
+input UpdateLocationInput {
+  # An index used to sort the locations.
+  sortIndex: Float
+
+  # Optional. Name of the location. Used in Photo Info links.
+  name: String
+
+  # An optional string that can be used to refer to the location.
+  tag: String
+
+  # Optional. A vignette used to introduce the location.
+  description: String
+}
+
+input LocationSearchSortInput {
+  filter: String
+  orderBy: String = "name"
+  direction: SortDirection = ASC
+}
+
+input SearchLocationsInput {
+  searchString: String!
+}
+
+input AllPhotosAtLocationInput {
+  id: Float
+  name: String
+  tag: String
+}
+
+input AddMatInput {
+  id: Float
+  name: String!
+  displayName: String!
+  description: String
+  color: String!
+  printType: String!
+  productImageId: Float
+  matSku: String!
+  dimension1: Float!
+  dimension2: Float!
+  cost: Float!
+  shippingCost: Float!
+  basePrice: Float!
+  priceModifier: Float!
+}
+
+input UpdateMatInput {
+  name: String
+  displayName: String
+  description: String
+  color: String
+  printType: String
+  productImageId: Float
+  matSku: String
+  dimension1: Float
+  dimension2: Float
+  cost: Float
+  shippingCost: Float
+  basePrice: Float
+  priceModifier: Float
+}
+
+input SearchMatsInput {
+  searchString: String!
+}
+
+input AddPhotoImageInput {
+  imageName: String = "New Image"
+  fileExtension: String = "XL"
+  jpegUrl: String = ""
+  webpUrl: String = ""
+  altText: String = "new image"
+  size: String = "XL"
+  width: Int = 0
+  height: Int = 0
+}
+
+input UpdatePhotoImageInput {
+  imageName: String
+  fileExtension: String
+  jpegUrl: String
+  webpUrl: String
+  altText: String
+  size: String
+  width: Int
+  height: Int
+}
+
+input SearchPhotoImagesInput {
+  searchString: String!
+}
+
+input PrintsInput {
+  type: String!
+  aspectRatio: String!
+}
+
+input MatsInput {
+  printType: String!
+  dimension1: String!
+  dimension2: String!
+}
+
+# Inputs to create a new Photographer entity.
+input AddPhotographerInput {
+  id: Float
+
+  # Photographer's full name.
+  name: String!
+
+  # Photographer's first name.
+  firstName: String!
+
+  # Photographer's last name.
+  lastName: String!
+
+  # Photographer's email address.
+  email: String!
+
+  # Short biography for Photographer. Displayed at the top of the Photographer's photo gallery.
+  bio: String!
+
+  # id for cover image.
+  coverImageId: Int
+}
+
+# Inputs to update a Photographer entity.
+input UpdatePhotographerInput {
+  # Optional: Photographer's full name.
+  name: String
+
+  # Optional: Photographer's first name.
+  firstName: String
+
+  # Optional: Photographer's last name.
+  lastName: String
+
+  # Optional: Photographer's email address.
+  email: String
+
+  # Optional: Short biography for Photographer. Displayed at the top of the Photographer's photo gallery.
+  bio: String
+
+  # id for cover image.
+  coverImageId: Int
+}
+
+input SearchPhotographersInput {
+  searchString: String!
+}
+
+input AllPhotosByPhotographerInput {
+  id: Float
+  name: String
+}
+
+input AddPhotoInput {
+  id: Float
+  title: String = "Untitled"
+  description: String = "No description provided."
+  isFeatured: Boolean = false
+  isLimitedEdition: Boolean = false
+  rating: Int = 5
+  basePrice12: Float = 120
+  priceModifier12: Float = 1
+  basePrice16: Float = 140
+  priceModifier16: Float = 1
+  basePrice20: Float = 175
+  priceModifier20: Float = 1
+  basePrice24: Float = 230
+  priceModifier24: Float = 1
+  basePrice30: Float = 275
+  priceModifier30: Float = 1
+  photographerId: Int
+  locationId: Int
+  subjectIds: [Int!]
+  tagIds: [Int!]
+  collectionIds: [Int!]
+  photoImageId: Int
+  shareImageId: Int
+}
+
+input UpdatePhotoInput {
+  title: String
+  description: String
+  isHidden: Boolean
+  isFeatured: Boolean
+  isLimitedEdition: Boolean
+  rating: Int
+  basePrice12: Float = 100
+  priceModifier12: Float = 1
+  basePrice16: Float = 140
+  priceModifier16: Float = 1
+  basePrice20: Float = 180
+  priceModifier20: Float = 1
+  basePrice24: Float = 230
+  priceModifier24: Float = 1
+  basePrice30: Float = 275
+  priceModifier30: Float = 1
+  photoImageId: Int
+  shareImageId: Int
+  photographerId: Int
+  locationId: Int
+  subjectIds: [Int!]
+  tagIds: [Int!]
+  collectionIds: [Int!]
+}
+
+input SearchPhotosInput {
+  searchString: String!
+}
+
+input AddPrintInput {
+  id: Float
+  displayName: String!
+  description: String
+  type: String!
+  printSku: String!
+  dimension1: Float!
+  dimension2: Float!
+  cost: Float!
+  shippingCost: Float!
+  basePrice: Float!
+  priceModifier: Float!
+}
+
+input UpdatePrintInput {
+  displayName: String
+  description: String
+  type: String
+  coverImageId: Float
+  printSku: String
+  dimension1: Float
+  dimension2: Float
+  cost: Float
+  shippingCost: Float
+  basePrice: Float
+  priceModifier: Float
+}
+
+input SearchPrintsInput {
+  searchString: String!
+}
+
+input AddProductImageInput {
+  imageName: String = "New Image"
+  fileExtension: String = "XL"
+  imageUrl: String = ""
+  altText: String = "new image"
+  size: String = "XL"
+  width: Int = 0
+  height: Int = 0
+}
+
+input UpdateProductImageInput {
+  imageName: String
+  fileExtension: String
+  imageUrl: String
+  altText: String
+  size: String
+  width: Int
+  height: Int
+}
+
+input SearchProductImagesInput {
+  searchString: String!
+}
+
+input AddProductInput {
+  photoId: Int!
+  printId: Int!
+  matId: Int
+  frameId: Int
+}
+
+input UpdateProductInput {
+  photoId: Int
+  printId: Int
+  matId: Int
+  frameId: Int
+}
+
+input AddShareImageInput {
+  id: Float
+  imageName: String = "New Image"
+  fileExtension: String = "XL"
+  imageUrl: String = ""
+  altText: String = "new image"
+  size: String = "XL"
+  width: Int = 0
+  height: Int = 0
+}
+
+input UpdateShareImageInput {
+  id: Float
+  imageName: String
+  fileExtension: String
+  imageUrl: String
+  altText: String
+  size: String
+  width: Int
+  height: Int
+}
+
+input SearchShareImagesInput {
+  searchString: String!
+}
+
+# Inputs to create a new Subject entity.
+input AddSubjectInput {
+  id: Float
+
+  # Name of the subject. Used in Photo Info links.
+  name: String!
+
+  # A vignette used to introduce the subject.
+  description: String
+
+  # A cover image to be displayed next to the opening vignette.
+  coverImageId: Int
+}
+
+# Optional inputs to be used to update the Subject Info.
+input UpdateSubjectInput {
+  # An index used to sort the subjects.
+  sortIndex: Float
+
+  # Optional. Name of the subject. Used in Photo Info links.
+  name: String
+
+  # Optional. A vignette used to introduce the subject.
+  description: String
+
+  # Optional. A cover image to be displayed next to the opening vignette.
+  coverImageId: Float
+}
+
+input SubjectSearchSortInput {
+  filter: String
+  orderBy: String = "name"
+  direction: SortDirection = ASC
+}
+
+input SearchSubjectsInput {
+  searchString: String!
+}
+
+input AllPhotosOfSubjectInput {
+  name: String!
+}
+
+# Inputs to create a new Tag entity.
+input AddTagInput {
+  id: Float
+
+  # Name of the tag. Used in Photo Info links.
+  name: String!
+
+  # A vignette used to introduce the tag.
+  description: String
+}
+
+# Optional inputs to be used to update the Tag Info.
+input UpdateTagInput {
+  # An index used to sort the tags.
+  sortIndex: Float
+
+  # Optional. Name of the tag. Used in Photo Info links.
+  name: String
+
+  # Optional. A vignette used to introduce the tag.
+  description: String
+}
+
+input TagSearchSortInput {
+  filter: String
+  orderBy: String = "name"
+  direction: SortDirection = ASC
+}
+
+input SearchTagsInput {
+  searchString: String!
+}
+
+input AllPhotosWithTagInput {
+  name: String!
+}
+
 input GetApiTokenInput {
   userId: Float!
   email: String!
 }
 
 type Query {
+  # Returns all Collections. Sortable and filterable.
+  collections(input: CollectionSearchSortInput!): CollectionsResponse!
+
+  # Search collections
+  searchCollections(input: SearchCollectionsInput!): SearchCollectionsResponse!
+  collection(id: Int!): Collection
+  collectionWithName(name: String!): Collection
+  allPhotosInCollection(input: AllPhotosInCollectionInput!): AllPhotosInCollectionResponse!
+
+  # Search Frames. Returns Frame + product Image.
+  searchFrames(input: SearchFramesInput!): SearchFramesResponse!
+  framesWithAspectRatio(aspectRatio: String!): [Frame!]!
+  frame(id: Int!): Frame!
+
+  # Returns all Locations. Sortable and filterable.
+  locations(input: LocationSearchSortInput!): LocationsResponse!
+
+  # Search locations
+  searchLocations(input: SearchLocationsInput!): SearchLocationsResponse!
+  location(id: Int!): Location
+  locationWithName(name: String!): Location
+  allPhotosAtLocation(input: AllPhotosAtLocationInput!): AllPhotosAtLocationResponse!
+
+  # Search Mats. Returns Mat + Product Image.
+  searchMats(input: SearchMatsInput!): SearchMatsResponse!
+  matsWithAspectRatio(aspectRatio: String!): [Mat!]!
+  matsWithAspectRatioAndSize(size: Int!, aspectRatio: String!): [Mat!]!
+  mat(id: Int!): Mat!
+  photoImages: [PhotoImage!]!
+  photoImage(id: Int!): PhotoImage!
+  searchPhotoImages(input: SearchShareImagesInput!): SearchShareImagesResponse!
+  printsOfTypeAndAspectRatio(input: PrintsInput!): PrintsResponse!
+  matsOfTypeAndSize(input: MatsInput!): MatsResponse!
+  finishOptions(aspectRatio: String!): FinishOptions!
+  photoAndFinishOptionsForSku(sku: Int!): PhotoWithFinishOptionsResponse!
+
+  # Returns all Photographers + portraits, only. Meant to be used on the backend.
+  searchPhotographers(input: SearchPhotographersInput!): SearchPhotographersResponse!
+
+  # Returns all Photographers + portraits, only. Meant to be used on the backend.
+  sortedPhotographers(asc: Boolean!, orderBy: String!, filter: String!): PhotographersResponse!
+
+  # Returns one Photographer + portrait, only or null, if no matching id is found. Meant to be used on the backend.
+  photographer(id: Int!): Photographer
+
+  # Returns one Photographer + portrait AND Photographer's Photos and related data. Meant to be used on the frontend. Used for the Photographer's Gallery.
+  photographerWithName(name: String!): Photographer
+  allPhotosByPhotographer(input: AllPhotosByPhotographerInput!): AllPhotosByPhotographerResponse!
+  photoEditOptions: PhotoEditSelectionOptions!
+  allFeaturedPhotos: AllFeaturedPhotosResponse!
+
+  # Returns all Photos + all relations. Searchable.
+  searchPhotos(input: SearchPhotosInput!): SearchPhotosResponse!
+  photo(id: Int!): Photo
+  photoWithSku(sku: Int!): Photo!
+
+  # Search Prints. Returns Print + Cover Image.
+  searchPrints(input: SearchPrintsInput!): SearchPrintsResponse!
+  print(id: Int!): Print!
+  productImages: [ProductImage!]!
+  productImage(id: Int!): ProductImage!
+  searchImages(input: SearchProductImagesInput!): SearchProductImagesResponse!
+  product(id: Int!): Product
+  shareImages: [ShareImage!]!
+  shareImage(id: Int!): ShareImage!
+
+  # Returns all Subjects. Sortable and filterable.
+  subjects(input: SubjectSearchSortInput!): SubjectsResponse!
+
+  # Search subjects.
+  searchSubjects(input: SearchSubjectsInput!): SearchSubjectsResponse!
+  subject(id: Int!): Subject
+  subjectWithName(name: String!): Subject
+  allPhotosOfSubject(input: AllPhotosOfSubjectInput!): AllPhotosOfSubjectResponse!
+
+  # Returns all Tags. Sortable and filterable.
+  tags(input: TagSearchSortInput!): TagsResponse!
+
+  # Search tags
+  searchTags(input: SearchTagsInput!): SearchTagsResponse!
+  tag(id: Int!): Tag
+  tagWithName(name: String!): Tag
+  allPhotosWithTag(input: AllPhotosWithTagInput!): AllPhotosWithTagResponse!
+
+  # Returns all Photos favorited by the signed in User.
+  favorites: FavoritesResponse!
+  shoppingBagItems: ShoppingBagItemsResponse!
+  userSummaries: [User!]!
+  newsletterSubscribers: [User!]!
+  getUserPreferences: UserPreferencesResponse!
   users: [User!]!
   user(id: Int!): User!
   me: Int!
 }
 
 type Mutation {
+  updateCollectionsFromCsv: UpdateCollectionsFromCsvResponse!
+  addCollection(input: AddCollectionInput!): AddCollectionResponse!
+  updateCollection(input: UpdateCollectionInput!, id: Int!): UpdateCollectionResponse!
+  deleteCollection(id: Int!): Boolean!
+  updateFramesFromCsv: UpdateFramesFromCsvResponse!
+  addFrame(input: AddFrameInput!): AddFrameResponse!
+  updateFrame(input: UpdateFrameInput!, id: Int!): UpdateFrameResponse!
+  deleteFrame(id: Int!): Boolean!
+  updateLocationsFromCsv: UpdateLocationsFromCsvResponse!
+  addLocation(input: AddLocationInput!): AddLocationResponse!
+  updateLocation(input: UpdateLocationInput!, id: Int!): UpdateLocationResponse!
+  deleteLocation(id: Int!): Boolean!
+  updateMatsFromCsv: UpdateMatsFromCsvResponse!
+  addMat(input: AddMatInput!): AddMatResponse!
+  updateMat(input: UpdateMatInput!, id: Int!): UpdateMatResponse!
+  deleteMat(id: Int!): Boolean!
+  updatePhotoImagesFromCsv: UpdatePhotoImagesFromCsvResponse!
+  addPhotoImage(input: AddShareImageInput!): AddShareImageResponse!
+  updatePhotoImage(input: UpdatePhotoImageInput!, id: Int!): UpdatePhotoImageResponse!
+  deletePhotoImage(id: Int!): Boolean!
+  updatePhotographersFromCsv: UpdatePhotographersFromCsvResponse!
+  addPhotographer(input: AddPhotographerInput!): AddPhotographerResponse!
+  updatePhotographer(input: UpdatePhotographerInput!, id: Int!): UpdatePhotographerResponse!
+  deletePhotographer(id: Int!): Boolean!
+  updatePhotosFromCsv: UpdatePhotosFromCsvResponse!
+  addPhoto(input: AddPhotoInput!): AddPhotoResponse!
+  updatePhoto(input: UpdatePhotoInput!, id: Int!): UpdatePhotoResponse!
+  deletePhoto(id: Int!): Boolean!
+  updatePrintsFromCsv: UpdatePrintsFromCsvResponse!
+  addPrint(input: AddPrintInput!): AddPrintResponse!
+  updatePrint(input: UpdatePrintInput!, id: Int!): UpdatePrintResponse!
+  deletePrint(id: Int!): Boolean!
+  updateProductImagesFromCsv: UpdateProductImagesFromCsvResponse!
+  addImage(input: AddProductImageInput!): AddProductImageResponse!
+  updateProductImage(input: UpdateProductImageInput!, id: Int!): UpdateProductImageResponse!
+  deleteProductImage(id: Int!): Boolean!
+  addProductImageToMat(productImageId: Int!, matId: Int!): addProductImageToMatResponse!
+  addProductImageToFrame(productImageId: Int!, frameId: Int!): addProductImageToFrameResponse!
+  addProduct(input: AddProductInput!): AddProductResponse!
+  updateProduct(input: UpdateProductInput!, id: Int!): UpdateProductResponse!
+  deleteProduct(id: Int!): SuccessMessageResponse!
+  updateShareImagesFromCsv: UpdateShareImagesFromCsvResponse!
+  updateShareImage(input: UpdateShareImageInput!, id: Int!): UpdateShareImageResponse!
+  deleteShareImage(id: Int!): Boolean!
+  updateSubjectsFromCsv: UpdateSubjectsFromCsvResponse!
+  addSubject(input: AddSubjectInput!): AddSubjectResponse!
+  updateSubject(input: UpdateSubjectInput!, id: Int!): UpdateSubjectResponse!
+  deleteSubject(id: Int!): Boolean!
+  updateTagsFromCsv: UpdateTagsFromCsvResponse!
+  addTag(input: AddTagInput!): AddTagResponse!
+  updateTag(input: UpdateTagInput!, id: Int!): UpdateTagResponse!
+  deleteTag(id: Int!): Boolean!
   getApiToken(input: GetApiTokenInput!): String!
+  addPhotoToFavorites(photoId: Float!): AddPhotoToFavoritesResponse!
+  removePhotoFromFavorites(photoId: Float!): RemovePhotoFromFavoritesResponse!
+  addProductToShoppingBag(productId: Float!): AddProductToShoppingBagResponse!
+  removeProductFromShoppingBag(productId: Float!): SuccessMessageResponse!
 }

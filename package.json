@@ -7,7 +7,8 @@
     "dev": "nodemon",
     "build": "rimraf ./build && tsc",
     "rimraf": "./node_modules/rimraf/bin.js",
-    "start": "yarn build && node build/index.js"
+    "start": "yarn build && node build/index.js",
+    "import-frames": "ts-node-dev src/utils/import-frame-data.ts"
   },
   "engines": {
     "node": "15.x",
@@ -20,6 +21,7 @@
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "fast-csv": "^4.3.6",
     "graphql": "^15.5.0",
     "graphql-scalars": "^1.9.0",
     "jsonwebtoken": "^8.5.1",
@@ -38,6 +40,7 @@
     "@types/express-jwt": "^6.0.1",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/node": "^14.14.41",
+    "@types/pg": "^7.14.11",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",

@@ -6,14 +6,18 @@ import { useContainer } from 'typeorm';
 
 import { authChecker } from '../utils/auth-checker';
 import path from 'path';
-// import { connectToLocalDB } from './database';
+import { connectToLocalDB } from './database';
 import { connectToRemoteDB } from './database';
+import { ApolloServerPluginInlineTrace } from 'apollo-server-core';
 
 export default async function () {
   useContainer(Container);
 
-  // await connectToLocalDB();
-  await connectToRemoteDB();
+  if (process.env.NODE_ENV === 'production') {
+    await connectToRemoteDB();
+  } else {
+    await connectToLocalDB();
+  }
 
   const pathname = path.join(__dirname, '..', 'graphql/resolvers/**/*.{ts,js}');
 
@@ -35,6 +39,7 @@ export default async function () {
     schema,
     introspection: true,
     playground: true,
+    plugins: [ApolloServerPluginInlineTrace()],
     // context: ({ req }) => {
     //   const user = req.user || null;
     //   return { user };
