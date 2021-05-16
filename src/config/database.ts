@@ -47,7 +47,7 @@ export const connectToRemoteDB = async () => {
         rejectUnauthorized: false,
       },
     },
-    entities: ['build/src/graphql/entities/*{.ts,.js}'],
+    entities: ['build/graphql/entities/*{.ts,.js}'],
   });
 
   if (connection) {
