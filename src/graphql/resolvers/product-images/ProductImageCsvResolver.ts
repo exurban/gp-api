@@ -50,7 +50,7 @@ export default class ProductImageCsvResolver {
       .on('data', (row) => {
         const productImage: ProductImageData = {
           id: parseInt(row.id),
-          imageName: row.name,
+          imageName: row.imageName,
           fileExtension: row.fileExtension,
           imageUrl: row.imageUrl,
           altText: row.altText,
