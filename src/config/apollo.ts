@@ -2,13 +2,13 @@ import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { Container } from 'typedi';
-import { useContainer } from 'typeorm';
 
 import { authChecker } from '../utils/auth-checker';
 import path from 'path';
 import { connectToLocalDB } from './database';
 import { connectToRemoteDB } from './database';
 import { ApolloServerPluginInlineTrace } from 'apollo-server-core';
+import { useContainer } from 'typeorm';
 
 export default async function () {
   useContainer(Container);
@@ -18,6 +18,9 @@ export default async function () {
   } else {
     await connectToLocalDB();
   }
+
+  const dirName = path.join(__dirname);
+  console.log(`dirName is ${dirName}`);
 
   const pathname = path.join(__dirname, '..', 'graphql/resolvers/**/*.{ts,js}');
 
