@@ -30,9 +30,9 @@ export default async function () {
     resolvers: [pathname],
 
     emitSchemaFile: {
-      path: __dirname + '/schema.gql',
+      path: __dirname + '/graphql/schema.gql',
       commentDescriptions: true,
-      sortedSchema: false,
+      sortedSchema: true,
     },
     container: Container,
     authChecker: authChecker,
