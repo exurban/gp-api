@@ -38,6 +38,8 @@ export default async function () {
     authChecker: authChecker,
   });
 
+  console.log(JSON.stringify(schema, null, 2));
+
   return new ApolloServer({
     schema,
     introspection: true,
