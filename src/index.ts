@@ -12,9 +12,10 @@ if (process.env.NODE_ENV !== 'production') {
   const port = process.env.PORT;
   const server = await initServer();
 
-  server.applyMiddleware({ path: '/api', app });
+  // server.applyMiddleware({ path: '/api', app });
+  server.applyMiddleware({ app });
 
   app.listen({ port }, () => {
-    console.log(`Server started at http://localhost:${port}/api`);
+    console.log(`Server started at http://localhost:${port}`);
   });
 })();

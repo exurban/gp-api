@@ -19,12 +19,7 @@ export default async function () {
     await connectToLocalDB();
   }
 
-  const dirName = path.join(__dirname);
-  console.log(`dirName is ${dirName}`);
-
   const pathname = path.join(__dirname, '..', 'graphql/resolvers/**/*.{ts,js}');
-
-  console.log(`resolvers are at: ${pathname}`);
 
   const schema = await buildSchema({
     resolvers: [pathname],
@@ -38,16 +33,10 @@ export default async function () {
     authChecker: authChecker,
   });
 
-  console.log(JSON.stringify(schema, null, 2));
-
   return new ApolloServer({
     schema,
     introspection: true,
     playground: true,
     plugins: [ApolloServerPluginInlineTrace()],
-    // context: ({ req }) => {
-    //   const user = req.user || null;
-    //   return { user };
-    // },
   });
 }
