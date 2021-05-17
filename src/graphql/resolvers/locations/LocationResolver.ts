@@ -263,7 +263,7 @@ export default class LocationResolver {
       .createQueryBuilder('p')
       .leftJoinAndSelect('p.location', 'l')
       .leftJoinAndSelect('p.photographer', 'pg')
-      .leftJoinAndSelect('p.primaryImage', 'pi')
+      .leftJoinAndSelect('p.photoImage', 'pi')
       .leftJoinAndSelect('p.shareImage', 'shi')
       .leftJoinAndSelect('p.subjectsInPhoto', 'ps')
       .leftJoinAndSelect('ps.subject', 's', 's.id = ps.subjectId')
