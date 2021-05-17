@@ -228,7 +228,7 @@ export default class TagResolver {
       .leftJoinAndSelect('p.photographer', 'pg')
       .leftJoinAndSelect('p.photoImage', 'pi')
       .leftJoinAndSelect('p.shareImage', 'si')
-      .leftJoinAndSelect('p.tagsInPhoto', 'pt')
+      .leftJoinAndSelect('p.tagsForPhoto', 'pt')
       .leftJoinAndSelect('pt.tag', 't', 't.id = pt.tagId')
       .leftJoinAndSelect('p.subjectsInPhoto', 'ps')
       .leftJoinAndSelect('ps.subject', 's', 's.id = ps.subjectId')
