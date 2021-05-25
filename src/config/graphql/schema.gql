@@ -584,7 +584,7 @@ type Photo {
   location: Location
 
   # Primary image for the photo with a maximum dimension of 1,400px, saved to .webp format and converted to .jpeg for email sharing.
-  photoImage: PhotoImage
+  photoImage: PhotoImage!
   photographer: Photographer
   priceModifier12: Float!
   priceModifier16: Float!

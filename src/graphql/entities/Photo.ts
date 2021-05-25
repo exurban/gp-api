@@ -144,11 +144,10 @@ export default class Photo extends BaseEntity {
   @Field(() => PhotoImage, {
     description:
       'Primary image for the photo with a maximum dimension of 1,400px, saved to .webp format and converted to .jpeg for email sharing.',
-    nullable: true,
   })
-  @OneToOne(() => PhotoImage, { nullable: true })
+  @OneToOne(() => PhotoImage)
   @JoinColumn()
-  photoImage?: PhotoImage;
+  photoImage: PhotoImage;
 
   @Field(() => ShareImage, {
     description: 'A 1,200px x 630px image for sharing.',

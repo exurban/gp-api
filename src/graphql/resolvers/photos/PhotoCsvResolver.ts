@@ -172,7 +172,9 @@ export default class PhotoCsvResolver {
         const pi = await this.photoImageRepository.findOne({
           id: photoImageId,
         });
-        newPhoto.photoImage = pi;
+        if (pi) {
+          newPhoto.photoImage = pi;
+        }
       }
 
       if (shareImageId) {
@@ -270,7 +272,9 @@ export default class PhotoCsvResolver {
         const pi = await this.photoImageRepository.findOne({
           id: photoImageId,
         });
-        photoToUpdate.photoImage = pi;
+        if (pi) {
+          photoToUpdate.photoImage = pi;
+        }
       }
 
       if (shareImageId) {
