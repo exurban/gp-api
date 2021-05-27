@@ -165,9 +165,8 @@ export default class PhotoFinishesResolver {
       .createQueryBuilder('p')
       .leftJoinAndSelect('p.location', 'l')
       .leftJoinAndSelect('p.photographer', 'pg')
-      .leftJoinAndSelect('p.images', 'i')
-      .leftJoinAndSelect('p.sharingImage', 'si')
-      .leftJoinAndSelect('p.emailSharingImage', 'esi')
+      .leftJoinAndSelect('p.photoImage', 'pi')
+      .leftJoinAndSelect('p.shareImage', 'si')
       .leftJoinAndSelect('p.subjectsInPhoto', 'ps')
       .leftJoinAndSelect('ps.subject', 's', 's.id = ps.subjectId')
       .leftJoinAndSelect('p.tagsForPhoto', 'pt')
@@ -190,21 +189,20 @@ export default class PhotoFinishesResolver {
 
     const prints = await this.printRepository
       .createQueryBuilder('p')
-      .leftJoinAndSelect('p.coverImage', 'ci')
       .where('p.aspectRatio = :aspectRatio', { aspectRatio: aspectRatio })
       .orderBy('p.dimension1', 'ASC')
       .getMany();
 
     const mats = await this.matRepository
       .createQueryBuilder('m')
-      .leftJoinAndSelect('m.coverImage', 'ci')
+      .leftJoinAndSelect('m.productImage', 'ci')
       .where('m.aspectRatio = :aspectRatio', { aspectRatio: aspectRatio })
       .orderBy('m.dimension1', 'ASC')
       .getMany();
 
     const frames = await this.frameRepository
       .createQueryBuilder('f')
-      .leftJoinAndSelect('f.coverImage', 'ci')
+      .leftJoinAndSelect('f.productImage', 'ci')
       .where('f.aspectRatio = :aspectRatio', { aspectRatio: aspectRatio })
       .orderBy('f.dimension1', 'ASC')
       .getMany();
