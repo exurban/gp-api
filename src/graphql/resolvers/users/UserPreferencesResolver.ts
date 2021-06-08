@@ -63,7 +63,7 @@ export default class UserResolver {
     const userFavorites = await this.userFavoriteRepository
       .createQueryBuilder('uf')
       .leftJoinAndSelect('uf.photo', 'p')
-      .leftJoinAndSelect('p.images', 'i')
+      .leftJoinAndSelect('p.photoImage', 'pi')
       .leftJoinAndSelect('p.photographer', 'pg')
       .leftJoinAndSelect('p.location', 'l')
       .leftJoinAndSelect('p.subjectsInPhoto', 'ps')
@@ -79,7 +79,7 @@ export default class UserResolver {
     const userShoppingBagItems = await this.productRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.photo', 'p')
-      .leftJoinAndSelect('p.images', 'i')
+      .leftJoinAndSelect('p.photoImage', 'pi')
       .leftJoinAndSelect('product.print', 'pr')
       .leftJoinAndSelect('product.mat', 'm')
       .leftJoinAndSelect('product.frame', 'fr')

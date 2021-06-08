@@ -185,7 +185,7 @@ export default class PhotoFinishesResolver {
     }
 
     const aspectRatio = photo.photoImage?.aspectRatio;
-    console.log(`images aspect ratio is ${aspectRatio}`);
+    console.log(`image's aspect ratio is ${aspectRatio}`);
 
     const prints = await this.printRepository
       .createQueryBuilder('p')

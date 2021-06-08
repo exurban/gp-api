@@ -4,11 +4,35 @@ import { buildSchema } from 'type-graphql';
 import { Container } from 'typedi';
 
 import { authChecker } from '../utils/auth-checker';
+import jwt from 'jsonwebtoken';
+import User from '../graphql/entities/User';
 import path from 'path';
 import { connectToLocalDB } from './database';
 import { connectToRemoteDB } from './database';
 import { ApolloServerPluginInlineTrace } from 'apollo-server-core';
 import { useContainer } from 'typeorm';
+
+interface ITokenPayload {
+  id: number;
+  email: string;
+  iat: number;
+}
+
+// get the user info from a JWT token
+const getUser = async (token: string): Promise<User | undefined> => {
+  // verify token
+  const decodedToken = jwt.verify(
+    token,
+    process.env.JWT_SECRET as jwt.Secret
+  ) as ITokenPayload;
+  if (decodedToken.id) {
+    return await User.findOne({ id: decodedToken.id });
+  } else {
+    // user has a temp token after first signin. Let's replace it with a regular userId token
+    console.error(`REQUEST HAS TEMPORARY JWT TOKEN.`);
+  }
+  return undefined;
+};
 
 export default async function () {
   useContainer(Container);
@@ -38,5 +62,28 @@ export default async function () {
     introspection: true,
     playground: true,
     plugins: [ApolloServerPluginInlineTrace()],
+    context: async ({ req }) => {
+      let user;
+      console.log(
+        `rec'd req with authorization: ${JSON.stringify(
+          req.headers.authorization,
+          null,
+          2
+        )}`
+      );
+      if (
+        req.headers.authorization &&
+        req.headers.authorization.split(' ')[0] === 'Bearer'
+      ) {
+        const token = req.headers.authorization.split(' ')[1] as string;
+        console.log(`token: ${JSON.stringify(token, null, 2)}`);
+        user = await getUser(token);
+        console.log(`put user on the context ${JSON.stringify(user, null, 2)}`);
+      } else {
+        console.log(`No bearer token found in headers.`);
+      }
+
+      return { req, user };
+    },
   });
 }

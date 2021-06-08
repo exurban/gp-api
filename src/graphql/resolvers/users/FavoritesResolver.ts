@@ -75,7 +75,7 @@ export default class UserResolver {
     if (photoIds.length > 0) {
       photos = await this.photoRepository
         .createQueryBuilder('p')
-        .leftJoinAndSelect('p.images', 'i')
+        .leftJoinAndSelect('p.photoImage', 'pi')
         .leftJoinAndSelect('p.photographer', 'pg')
         .leftJoinAndSelect('p.location', 'l')
         .leftJoinAndSelect('p.subjectsInPhoto', 'ps')
@@ -116,6 +116,14 @@ export default class UserResolver {
     const user = await this.userRepository.findOne(userId);
 
     const photo = await this.photoRepository.findOne(photoId);
+
+    console.log(
+      `Adding ${photo?.id} to favorites for user ${JSON.stringify(
+        user,
+        null,
+        2
+      )}`
+    );
 
     if (!user) {
       return {

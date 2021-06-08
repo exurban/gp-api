@@ -1,25 +1,25 @@
 import { AuthChecker } from 'type-graphql';
+import User from '../graphql/entities/User';
 
-type UserToken = {
-  iss: string;
-  sub: string;
-  aud: string[];
-  iat: Date;
-  exp: Date;
-  azp: string;
-  scope: string;
-  gty: string;
-};
+interface Context {
+  user?: User;
+}
 
-type Context = {
-  user: UserToken;
-};
-
-export const authChecker: AuthChecker<Context> = async (
+export const authChecker: AuthChecker<Context> = (
   { context: { user } },
   roles
 ) => {
-  console.log(`user ${user}`);
-  console.log(`roles ${roles}`);
-  return true;
+  if (roles.length === 0) {
+    return user !== undefined;
+  }
+
+  if (!user) {
+    return false;
+  }
+
+  if (user.roles.some((role) => roles.includes(role))) {
+    return true;
+  }
+
+  return false;
 };

@@ -150,7 +150,7 @@ export default class ProductResolver {
     const product = await this.productRepository
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.photo', 'p')
-      .leftJoinAndSelect('p.images', 'i')
+      .leftJoinAndSelect('p.photoImage', 'pi')
       .leftJoinAndSelect('product.print', 'pr')
       .leftJoinAndSelect('product.mat', 'm')
       .leftJoinAndSelect('m.coverImage', 'mci')
@@ -171,7 +171,7 @@ export default class ProductResolver {
     const userId = context.user.id;
 
     const photo = await this.photoRepository.findOne(input.photoId, {
-      relations: ['images'],
+      relations: ['photoImage'],
     });
     if (!photo) {
       return {
@@ -216,6 +216,8 @@ export default class ProductResolver {
       frame: frame,
     });
 
+    console.log(`New product: ${JSON.stringify(newProduct, null, 2)}`);
+
     if (userId) {
       const user = await this.userRepository.findOne(userId);
       newProduct.shoppingBag = user;
@@ -226,6 +228,7 @@ export default class ProductResolver {
       return {
         success: true,
         message: `Created new product and added to bag.`,
+        newProduct: newProduct,
       };
     }
 

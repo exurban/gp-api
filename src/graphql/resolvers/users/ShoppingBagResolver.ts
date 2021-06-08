@@ -62,7 +62,7 @@ export default class UserResolver {
       products = await this.productRepository
         .createQueryBuilder('pr')
         .leftJoinAndSelect('pr.photo', 'p')
-        .leftJoinAndSelect('p.images', 'i')
+        .leftJoinAndSelect('p.photoImage', 'pi')
         .leftJoinAndSelect('pr.print', 'print')
         .leftJoinAndSelect('pr.mat', 'm')
         .leftJoinAndSelect('pr.frame', 'fr')
