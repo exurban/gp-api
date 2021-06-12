@@ -1,6 +1,5 @@
 import {
   Arg,
-  Ctx,
   Field,
   FieldResolver,
   InputType,
@@ -19,16 +18,11 @@ import Photo from '../entities/Photo';
 import Print from '../entities/Print';
 import Mat from '../entities/Mat';
 import Frame from '../entities/Frame';
-import User from '../entities/User';
 import SuccessMessageResponse from '../abstract/SuccessMessageResponse';
-
-interface Context {
-  user: User;
-}
 
 //* Input Types
 @InputType()
-class AddProductInput {
+class CreateProductInput {
   @Field(() => Int)
   photoId: number;
 
@@ -58,7 +52,7 @@ class UpdateProductInput {
 }
 
 @ObjectType()
-class AddProductResponse extends SuccessMessageResponse {
+class CreateProductResponse extends SuccessMessageResponse {
   @Field(() => Product, { nullable: true })
   newProduct?: Product;
 }
@@ -76,8 +70,7 @@ export default class ProductResolver {
     @InjectRepository(Photo) private photoRepository: Repository<Photo>,
     @InjectRepository(Print) private printRepository: Repository<Print>,
     @InjectRepository(Mat) private matRepository: Repository<Mat>,
-    @InjectRepository(Frame) private frameRepository: Repository<Frame>,
-    @InjectRepository(User) private userRepository: Repository<User>
+    @InjectRepository(Frame) private frameRepository: Repository<Frame>
   ) {}
 
   @FieldResolver(() => String)
@@ -163,13 +156,10 @@ export default class ProductResolver {
   }
 
   //* Mutations
-  @Mutation(() => AddProductResponse)
-  async addProduct(
-    @Ctx() context: Context,
-    @Arg('input', () => AddProductInput) input: AddProductInput
-  ): Promise<AddProductResponse> {
-    const userId = context.user.id;
-
+  @Mutation(() => CreateProductResponse)
+  async createProduct(
+    @Arg('input', () => CreateProductInput) input: CreateProductInput
+  ): Promise<CreateProductResponse> {
     const photo = await this.photoRepository.findOne(input.photoId, {
       relations: ['photoImage'],
     });
@@ -217,20 +207,6 @@ export default class ProductResolver {
     });
 
     console.log(`New product: ${JSON.stringify(newProduct, null, 2)}`);
-
-    if (userId) {
-      const user = await this.userRepository.findOne(userId);
-      newProduct.shoppingBag = user;
-
-      await this.productRepository.insert(newProduct);
-      await this.productRepository.save(newProduct);
-
-      return {
-        success: true,
-        message: `Created new product and added to bag.`,
-        newProduct: newProduct,
-      };
-    }
 
     await this.productRepository.insert(newProduct);
     await this.productRepository.save(newProduct);

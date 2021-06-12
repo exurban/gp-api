@@ -204,19 +204,6 @@ type AddProductImageResponse {
   success: Boolean!
 }
 
-input AddProductInput {
-  frameId: Int
-  matId: Int
-  photoId: Int!
-  printId: Int!
-}
-
-type AddProductResponse {
-  message: String!
-  newProduct: Product
-  success: Boolean!
-}
-
 type AddProductToShoppingBagResponse {
   addedProduct: Product
   message: String!
@@ -375,6 +362,19 @@ type CollectionsResponse {
   collections: [Collection!]!
 }
 
+input CreateProductInput {
+  frameId: Int
+  matId: Int
+  photoId: Int!
+  printId: Int!
+}
+
+type CreateProductResponse {
+  message: String!
+  newProduct: Product
+  success: Boolean!
+}
+
 # The javascript `Date` as string. Type represents date and time as the ISO Date string.
 scalar DateTime
 
@@ -499,12 +499,12 @@ type Mutation {
   addPhotoToFavorites(photoId: Float!): AddPhotoToFavoritesResponse!
   addPhotographer(input: AddPhotographerInput!): AddPhotographerResponse!
   addPrint(input: AddPrintInput!): AddPrintResponse!
-  addProduct(input: AddProductInput!): AddProductResponse!
   addProductImageToFrame(frameId: Int!, productImageId: Int!): addProductImageToFrameResponse!
   addProductImageToMat(matId: Int!, productImageId: Int!): addProductImageToMatResponse!
   addProductToShoppingBag(productId: Float!): AddProductToShoppingBagResponse!
   addSubject(input: AddSubjectInput!): AddSubjectResponse!
   addTag(input: AddTagInput!): AddTagResponse!
+  createProduct(input: CreateProductInput!): CreateProductResponse!
   deleteCollection(id: Int!): Boolean!
   deleteFrame(id: Int!): Boolean!
   deleteLocation(id: Int!): Boolean!

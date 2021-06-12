@@ -63,27 +63,19 @@ export default async function () {
     playground: true,
     plugins: [ApolloServerPluginInlineTrace()],
     context: async ({ req }) => {
-      let user;
-      console.log(
-        `rec'd req with authorization: ${JSON.stringify(
-          req.headers.authorization,
-          null,
-          2
-        )}`
-      );
+      // let user;
+
       if (
         req.headers.authorization &&
         req.headers.authorization.split(' ')[0] === 'Bearer'
       ) {
         const token = req.headers.authorization.split(' ')[1] as string;
-        console.log(`token: ${JSON.stringify(token, null, 2)}`);
-        user = await getUser(token);
-        console.log(`put user on the context ${JSON.stringify(user, null, 2)}`);
-      } else {
-        console.log(`No bearer token found in headers.`);
+        // user = await getUser(token);
+        const user = await getUser(token);
+        return { req, user };
       }
 
-      return { req, user };
+      return { req };
     },
   });
 }
