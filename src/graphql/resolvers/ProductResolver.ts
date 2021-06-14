@@ -101,6 +101,9 @@ export default class ProductResolver {
 
   @FieldResolver()
   async totalRetailPrice(@Root() product: Product) {
+    console.log(
+      `in totalRetailPrice function.  ${product.id} - ${product.print.id}`
+    );
     const dim1 = product.print.dimension1;
 
     let price;
@@ -205,8 +208,6 @@ export default class ProductResolver {
       mat: mat,
       frame: frame,
     });
-
-    console.log(`New product: ${JSON.stringify(newProduct, null, 2)}`);
 
     await this.productRepository.insert(newProduct);
     await this.productRepository.save(newProduct);
