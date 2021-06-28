@@ -86,6 +86,7 @@ export default class UserResolver {
     const shoppingBagItem = await this.productRepository
       .createQueryBuilder('prd')
       .leftJoinAndSelect('prd.photo', 'photo')
+      .leftJoinAndSelect('photo.photoImage', 'image')
       .leftJoinAndSelect('prd.print', 'print')
       .leftJoinAndSelect('prd.mat', 'mat')
       .leftJoinAndSelect('prd.frame', 'frame')
