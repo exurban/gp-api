@@ -82,10 +82,15 @@ export default class UserResolver {
   ): Promise<AddProductToShoppingBagResponse> {
     const userId = context.user.id;
 
-    // * Check whether item is already in bag, return if it is
-    const shoppingBagItem = await this.productRepository.findOne({
-      where: { id: productId },
-    });
+    // * Check whether product exists
+    const shoppingBagItem = await this.productRepository
+      .createQueryBuilder('prd')
+      .leftJoinAndSelect('prd.photo', 'photo')
+      .leftJoinAndSelect('prd.print', 'print')
+      .leftJoinAndSelect('prd.mat', 'mat')
+      .leftJoinAndSelect('prd.frame', 'frame')
+      .where('prd.id = :productId', { productId: productId })
+      .getOne();
 
     if (!shoppingBagItem) {
       return {
