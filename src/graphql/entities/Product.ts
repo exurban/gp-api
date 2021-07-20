@@ -1,6 +1,7 @@
-import { Field, Float, ID, ObjectType } from "type-graphql";
+import { Field, Float, ID, ObjectType } from 'type-graphql';
 import {
   BaseEntity,
+  Column,
   CreateDateColumn,
   Entity,
   Index,
@@ -8,16 +9,16 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from "typeorm";
-import Photo from "./Photo";
-import Print from "./Print";
-import Mat from "./Mat";
-import Frame from "./Frame";
-import User from "./User";
-import Order from "./Order";
+} from 'typeorm';
+import Photo from './Photo';
+import Print from './Print';
+import Mat from './Mat';
+import Frame from './Frame';
+import User from './User';
+import Order from './Order';
 
 @ObjectType()
-@Entity({ name: "products" })
+@Entity({ name: 'products' })
 export default class Product extends BaseEntity {
   @Index({ unique: true })
   @Field(() => ID)
@@ -53,7 +54,7 @@ export default class Product extends BaseEntity {
     nullable: true,
   })
   @JoinColumn()
-  shoppingBag?: User;
+  shoppingBag?: User | null;
 
   @Field(() => Order)
   @ManyToOne(() => Order, (order) => order.products)
@@ -64,10 +65,21 @@ export default class Product extends BaseEntity {
   totalRetailPrice: number;
 
   @Field()
-  @CreateDateColumn({ type: "timestamptz" })
+  @Column({ type: 'timestamptz' })
+  removedAt: Date;
+
+  @Field(() => User, { nullable: true })
+  @ManyToOne(() => User, (user) => user.removedProducts, {
+    nullable: true,
+  })
+  @JoinColumn()
+  removedBy?: User;
+
+  @Field()
+  @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 
   @Field()
-  @UpdateDateColumn({ type: "timestamptz" })
+  @UpdateDateColumn({ type: 'timestamptz' })
   updatedAt: Date;
 }

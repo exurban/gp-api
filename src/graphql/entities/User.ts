@@ -61,6 +61,15 @@ export default class User extends BaseEntity {
   })
   shoppingBagItems?: Product[];
 
+  @Field(() => [Product], {
+    description: 'Products added to bag and then removed by user.',
+    nullable: true,
+  })
+  @OneToMany(() => Product, (product) => product.removedBy, {
+    nullable: true,
+  })
+  removedProducts?: Product[];
+
   @Field()
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;

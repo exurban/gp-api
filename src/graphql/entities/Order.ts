@@ -29,11 +29,11 @@ export default class Order extends BaseEntity {
   @Column()
   orderStatus: OrderStatus;
 
-  @Field(() => [Product])
+  @Field(() => [Product], { nullable: true })
   @OneToMany(() => Product, (product) => product.order)
   products: Product[];
 
-  @Field(() => Address)
+  @Field(() => Address, { nullable: true })
   @ManyToOne(() => Address, (address) => address.orders)
   @JoinColumn()
   shipToAddress: Address;
@@ -41,7 +41,7 @@ export default class Order extends BaseEntity {
   @Field(() => User)
   @ManyToOne(() => User, (user) => user.orders, { primary: true })
   @JoinColumn({ name: 'user_id' })
-  user: Promise<User>;
+  user: User;
 
   @Field()
   @CreateDateColumn({ type: 'timestamptz' })

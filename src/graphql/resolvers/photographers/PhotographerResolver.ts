@@ -221,7 +221,6 @@ export default class PhotographerResolver {
       'Returns one Photographer + portrait, only or null, if no matching id is found. Meant to be used on the backend.',
   })
   async photographer(@Arg('id', () => Int) id: number) {
-    console.log(`fetching photographer.`);
     return this.photographerRepository.findOne(id, {
       relations: ['coverImage'],
     });

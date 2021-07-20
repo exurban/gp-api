@@ -11,14 +11,23 @@ registerEnumType(SortDirection, {
 });
 
 export enum OrderStatus {
-  PAID = 'payment received',
-  PLACED = 'order placed with lab',
-  SHIPPED = 'lab shipped order',
-  FULFILLED = 'order complete',
-  PROBLEM = 'problem with order, see notes',
+  CREATED,
+  PAID,
+  PLACED,
+  SHIPPED,
+  FULFILLED,
+  PROBLEM,
 }
 
 registerEnumType(OrderStatus, {
   name: 'OrderStatus',
   description: 'Order status',
+  valuesConfig: {
+    CREATED: { description: 'order freshly created.' },
+    PAID: { description: 'payment received from customer' },
+    PLACED: { description: 'order placed with lab' },
+    SHIPPED: { description: 'lab shipped order' },
+    FULFILLED: { description: 'order complete' },
+    PROBLEM: { description: 'problem with order, see notes' },
+  },
 });

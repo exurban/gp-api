@@ -159,23 +159,17 @@ export default class UserResolver {
     if (productToRemove.shoppingBag?.id !== user.id) {
       return {
         success: false,
-        message: `This proudct is not in your shopping bag.`,
+        message: `This product is not in your shopping bag.`,
       };
     }
 
-    const deleteResult = await this.productRepository.delete({
-      id: productToRemove.id,
-    });
-    if (deleteResult && deleteResult.affected != 0) {
-      return {
-        success: true,
-        message: `Successfully removed product from your shopping bag.`,
-      };
-    } else {
-      return {
-        success: false,
-        message: `Failed to remove product from shopping bag.`,
-      };
-    }
+    productToRemove.shoppingBag = null;
+    productToRemove.removedAt = new Date();
+    productToRemove.removedBy = user;
+
+    return {
+      success: true,
+      message: `Removed photo from your shopping bag.`,
+    };
   }
 }
