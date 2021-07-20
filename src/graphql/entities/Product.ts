@@ -64,9 +64,9 @@ export default class Product extends BaseEntity {
   @Field(() => Float)
   totalRetailPrice: number;
 
-  @Field()
+  @Field({ nullable: true })
   @Column({ type: 'timestamptz' })
-  removedAt: Date;
+  removedAt?: Date;
 
   @Field(() => User, { nullable: true })
   @ManyToOne(() => User, (user) => user.removedProducts, {
