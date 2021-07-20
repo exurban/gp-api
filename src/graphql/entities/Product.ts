@@ -65,7 +65,7 @@ export default class Product extends BaseEntity {
   totalRetailPrice: number;
 
   @Field({ nullable: true })
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', nullable: true })
   removedAt?: Date;
 
   @Field(() => User, { nullable: true })
