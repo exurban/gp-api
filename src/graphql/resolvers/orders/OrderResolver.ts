@@ -26,13 +26,13 @@ interface Context {
 
 //* orderStatus, products, shipToAddress, user
 class UpdateOrderInput {
-  @Field({
+  @Field(() => OrderStatus, {
     nullable: true,
     description: `Current status of the order.`,
   })
   orderStatus?: OrderStatus;
 
-  @Field({
+  @Field(() => [Product], {
     nullable: true,
     description: `Products on the order.`,
   })
@@ -44,7 +44,7 @@ class UpdateOrderInput {
   })
   shipToAddress?: Address;
 
-  @Field({
+  @Field(() => User, {
     nullable: true,
     description: `The user who placed the order.`,
   })
