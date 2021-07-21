@@ -8,6 +8,7 @@ import {
   Resolver,
   Int,
   Field,
+  InputType,
 } from 'type-graphql';
 
 import { InjectRepository } from 'typeorm-typedi-extensions';
@@ -25,6 +26,7 @@ interface Context {
 }
 
 //* orderStatus, products, shipToAddress, user
+@InputType()
 class UpdateOrderInput {
   @Field(() => OrderStatus, {
     nullable: true,
