@@ -27,7 +27,7 @@ interface Context {
 
 //* orderStatus, products, shipToAddress, user
 @InputType()
-class UpdateOrderInput {
+class UpdateOrderInput implements Partial<Order> {
   @Field(() => OrderStatus, {
     nullable: true,
     description: `Current status of the order.`,
