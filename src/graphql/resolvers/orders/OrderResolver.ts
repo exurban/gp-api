@@ -34,19 +34,19 @@ class UpdateOrderInput {
   })
   orderStatus?: OrderStatus;
 
-  @Field(() => [Product], {
+  @Field(() => [Product] || null, {
     nullable: true,
     description: `Products on the order.`,
   })
   products?: Product[];
 
-  @Field({
+  @Field(() => Address || null, {
     nullable: true,
     description: `Shipping address for the order.`,
   })
   shipToAddress?: Address;
 
-  @Field(() => User, {
+  @Field(() => User || null, {
     nullable: true,
     description: `The user who placed the order.`,
   })
