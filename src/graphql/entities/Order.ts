@@ -14,7 +14,6 @@ import {
 
 import User from './User';
 import Product from './Product';
-import Address from './Address';
 import { OrderStatus } from '../abstract/Enum';
 
 @ObjectType()
@@ -25,6 +24,11 @@ export default class Order extends BaseEntity {
   @PrimaryGeneratedColumn()
   readonly id: number;
 
+  @Field(() => User)
+  @ManyToOne(() => User, (user) => user.orders, { primary: true })
+  @JoinColumn({ name: 'user_id' })
+  user: User;
+
   @Field(() => OrderStatus)
   @Column()
   orderStatus: OrderStatus;
@@ -33,15 +37,29 @@ export default class Order extends BaseEntity {
   @OneToMany(() => Product, (product) => product.order)
   products: Product[];
 
-  @Field(() => Address, { nullable: true })
-  @ManyToOne(() => Address, (address) => address.orders)
-  @JoinColumn()
-  shipToAddress: Address;
+  @Field()
+  @Column()
+  line1: string;
 
-  @Field(() => User)
-  @ManyToOne(() => User, (user) => user.orders, { primary: true })
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+  @Field()
+  @Column()
+  line2: string;
+
+  @Field()
+  @Column()
+  city: string;
+
+  @Field()
+  @Column()
+  state: string;
+
+  @Field()
+  @Column()
+  country: string;
+
+  @Field()
+  @Column()
+  postalCode: string;
 
   @Field()
   @CreateDateColumn({ type: 'timestamptz' })

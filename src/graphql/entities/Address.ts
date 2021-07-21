@@ -1,22 +1,20 @@
-import { Field, ID, ObjectType } from "type-graphql";
+import { Field, ID, ObjectType } from 'type-graphql';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
   Index,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from "typeorm";
-import Order from "./Order";
+} from 'typeorm';
 
 @ObjectType()
-@Entity({ name: "addresses" })
+@Entity({ name: 'addresses' })
 export default class Address extends BaseEntity {
   @Index()
   @Field(() => ID)
-  @PrimaryGeneratedColumn("increment")
+  @PrimaryGeneratedColumn('increment')
   readonly id: number;
 
   @Field()
@@ -43,15 +41,11 @@ export default class Address extends BaseEntity {
   @Column()
   postalCode: string;
 
-  @Field(() => [Order])
-  @OneToMany(() => Order, (order) => order.shipToAddress)
-  orders: Order[];
-
   @Field()
-  @CreateDateColumn({ type: "timestamptz" })
+  @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 
   @Field()
-  @UpdateDateColumn({ type: "timestamptz" })
+  @UpdateDateColumn({ type: 'timestamptz' })
   updatedAt: Date;
 }

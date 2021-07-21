@@ -19,7 +19,6 @@ import SuccessMessageResponse from '../../abstract/SuccessMessageResponse';
 import Order from '../../entities/Order';
 import User from '../../entities/User';
 import Product from '../../entities/Product';
-import Address from '../../entities/Address';
 
 interface Context {
   user: User;
@@ -28,29 +27,41 @@ interface Context {
 //* orderStatus, products, shipToAddress, user
 @InputType()
 class UpdateOrderInput implements Partial<Order> {
-  @Field(() => OrderStatus, {
-    nullable: true,
-    description: `Current status of the order.`,
-  })
-  orderStatus?: OrderStatus;
-
-  @Field(() => Address, {
-    nullable: true,
-    description: `Shipping address for the order.`,
-  })
-  shipToAddress?: Address;
-
   @Field(() => User, {
     nullable: true,
     description: `The user who placed the order.`,
   })
   user?: User;
 
-  @Field(() => [Product], {
+  @Field(() => OrderStatus, {
     nullable: true,
-    description: `Products on the order.`,
+    description: `Current status of the order.`,
   })
-  products?: Product[];
+  orderStatus?: OrderStatus;
+
+  @Field({ nullable: true })
+  line1?: string;
+
+  @Field({ nullable: true })
+  line2?: string;
+
+  @Field({ nullable: true })
+  city?: string;
+
+  @Field({ nullable: true })
+  state?: string;
+
+  @Field({ nullable: true })
+  country?: string;
+
+  @Field({ nullable: true })
+  postalCode?: string;
+
+  @Field(() => [Int], {
+    nullable: true,
+    description: `IDs of products on the order.`,
+  })
+  productIds?: number[];
 }
 
 @ObjectType()
@@ -107,17 +118,19 @@ export default class OrderResolver {
 
     const updatedOrder = await this.orderRepository.save(updated);
 
-    if (input.products) {
-      input.products.map(async (x) => {
-        const prd = await this.productRepository.findOne(x.id);
+    if (input.productIds) {
+      input.productIds.map(async (x) => {
+        const prd = await this.productRepository.findOne(x);
         if (!prd) {
-          console.error(`ERROR: Failed to find product with id ${x.id}`);
+          console.error(`ERROR: Failed to find product with id ${x}`);
         } else {
           prd.order = updatedOrder;
           prd.shoppingBag = null;
         }
       });
     }
+
+    await this.orderRepository.save(updatedOrder);
 
     return {
       success: true,
