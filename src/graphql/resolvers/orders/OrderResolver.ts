@@ -27,11 +27,11 @@ interface Context {
 //* orderStatus, products, shipToAddress, user
 @InputType()
 class UpdateOrderInput implements Partial<Order> {
-  @Field(() => User, {
+  @Field(() => Int, {
     nullable: true,
     description: `The user who placed the order.`,
   })
-  user?: User;
+  userId?: number;
 
   @Field(() => OrderStatus, {
     nullable: true,
