@@ -19,15 +19,15 @@ import { OrderStatus } from '../abstract/Enum';
 @ObjectType()
 @Entity({ name: 'orders' })
 export default class Order extends BaseEntity {
-  @Index({ unique: true })
+  @Index()
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   readonly id: number;
 
-  @Field(() => User)
-  @ManyToOne(() => User, (user) => user.orders, { primary: true })
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+  @Field(() => User, { nullable: true })
+  @ManyToOne(() => User, (user) => user.orders, { nullable: true })
+  @JoinColumn()
+  user?: User;
 
   @Field(() => OrderStatus)
   @Column()
@@ -35,31 +35,31 @@ export default class Order extends BaseEntity {
 
   @Field(() => [Product], { nullable: true })
   @OneToMany(() => Product, (product) => product.order)
-  products: Product[];
+  products?: Product[];
 
-  @Field()
-  @Column()
-  line1: string;
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  line1?: string;
 
-  @Field()
-  @Column()
-  line2: string;
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  line2?: string;
 
-  @Field()
-  @Column()
-  city: string;
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  city?: string;
 
-  @Field()
-  @Column()
-  state: string;
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  state?: string;
 
-  @Field()
-  @Column()
-  country: string;
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  country?: string;
 
-  @Field()
-  @Column()
-  postalCode: string;
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  postalCode?: string;
 
   @Field()
   @CreateDateColumn({ type: 'timestamptz' })

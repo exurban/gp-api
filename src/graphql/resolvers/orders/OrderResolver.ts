@@ -24,7 +24,45 @@ interface Context {
   user: User;
 }
 
-//* orderStatus, products, shipToAddress, user
+@InputType()
+class AddOrderInput implements Partial<Order> {
+  @Field(() => Int, {
+    nullable: true,
+    description: `The user who placed the order.`,
+  })
+  userId?: number;
+
+  @Field(() => OrderStatus, {
+    nullable: true,
+    description: `Current status of the order.`,
+  })
+  orderStatus?: OrderStatus;
+
+  @Field({ nullable: true })
+  line1?: string;
+
+  @Field({ nullable: true })
+  line2?: string;
+
+  @Field({ nullable: true })
+  city?: string;
+
+  @Field({ nullable: true })
+  state?: string;
+
+  @Field({ nullable: true })
+  country?: string;
+
+  @Field({ nullable: true })
+  postalCode?: string;
+
+  @Field(() => [Int], {
+    nullable: true,
+    description: `IDs of products on the order.`,
+  })
+  productIds?: number[];
+}
+
 @InputType()
 class UpdateOrderInput implements Partial<Order> {
   @Field(() => Int, {
@@ -65,6 +103,12 @@ class UpdateOrderInput implements Partial<Order> {
 }
 
 @ObjectType()
+class AddOrderResponse extends SuccessMessageResponse {
+  @Field(() => Order, { nullable: true })
+  newOrder?: Order;
+}
+
+@ObjectType()
 class UpdateOrderResponse extends SuccessMessageResponse {
   @Field(() => Order, { nullable: true })
   updatedOrder?: Order;
@@ -82,21 +126,54 @@ export default class OrderResolver {
   @Authorized('ADMIN')
   @Query(() => [Order])
   async allOrders(): Promise<Order[]> {
-    return this.orderRepository.find();
+    return this.orderRepository.find({
+      relations: ['user', 'products'],
+      order: { id: 'DESC' },
+    });
   }
 
   //* Mutations
   @Authorized('USER')
-  @Mutation(() => Order)
-  async createOrder(@Ctx() context: Context): Promise<Order | null> {
+  @Mutation(() => AddOrderResponse)
+  async addOrder(
+    @Ctx() context: Context,
+    @Arg('input', () => AddOrderInput) input: AddOrderInput
+  ): Promise<AddOrderResponse> {
+    console.log(`New Order input: ${JSON.stringify(input, null, 2)}`);
     const userId = context.user.id;
     const user = await this.userRepository.findOne(userId);
+    console.log(`Creating order for user with id ${user?.id}`);
 
     const newOrder = await this.orderRepository.create({
+      ...input,
       user: user,
-      orderStatus: OrderStatus.CREATED,
+      orderStatus: OrderStatus.PAID,
     });
-    return newOrder;
+
+    await this.orderRepository.save(newOrder);
+
+    if (input.productIds) {
+      input.productIds.map(async (x) => {
+        console.log(`Trying to fetch product with id ${x}`);
+        const prd = await this.productRepository.findOne(x);
+        if (!prd) {
+          console.error(`ERROR: Failed to find product with id ${x}`);
+        } else {
+          console.log(`adding product with id ${x} to order ${newOrder.id}.`);
+          prd.order = newOrder;
+          prd.shoppingBag = null;
+
+          await this.productRepository.save(prd);
+        }
+      });
+    }
+
+    // await this.orderRepository.save(newOrder);
+    return {
+      success: true,
+      message: `Successfully created new order.`,
+      newOrder: newOrder,
+    };
   }
 
   @Authorized('USER')

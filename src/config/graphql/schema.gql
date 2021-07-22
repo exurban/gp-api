@@ -85,6 +85,30 @@ type AddMatResponse {
   success: Boolean!
 }
 
+input AddOrderInput {
+  city: String
+  country: String
+  line1: String
+  line2: String
+
+  # Current status of the order.
+  orderStatus: OrderStatus
+  postalCode: String
+
+  # IDs of products on the order.
+  productIds: [Int!]
+  state: String
+
+  # The user who placed the order.
+  userId: Int
+}
+
+type AddOrderResponse {
+  message: String!
+  newOrder: Order
+  success: Boolean!
+}
+
 input AddPhotoImageInput {
   altText: String = "new image"
   fileExtension: String = "XL"
@@ -269,7 +293,6 @@ type Address {
   id: ID!
   line1: String!
   line2: String!
-  orders: [Order!]!
   postalCode: String!
   state: String!
   updatedAt: DateTime!
@@ -494,6 +517,7 @@ type Mutation {
   addImage(input: AddProductImageInput!): AddProductImageResponse!
   addLocation(input: AddLocationInput!): AddLocationResponse!
   addMat(input: AddMatInput!): AddMatResponse!
+  addOrder(input: AddOrderInput!): AddOrderResponse!
   addPhoto(input: AddPhotoInput!): AddPhotoResponse!
   addPhotoImage(input: AddShareImageInput!): AddShareImageResponse!
   addPhotoToFavorites(photoId: Float!): AddPhotoToFavoritesResponse!
@@ -529,6 +553,7 @@ type Mutation {
   updateLocationsFromCsv: UpdateLocationsFromCsvResponse!
   updateMat(id: Int!, input: UpdateMatInput!): UpdateMatResponse!
   updateMatsFromCsv: UpdateMatsFromCsvResponse!
+  updateOrder(id: Int!, input: UpdateOrderInput!): UpdateOrderResponse!
   updatePhoto(id: Int!, input: UpdatePhotoInput!): UpdatePhotoResponse!
   updatePhotoImage(id: Int!, input: UpdatePhotoImageInput!): UpdatePhotoImageResponse!
   updatePhotoImagesFromCsv: UpdatePhotoImagesFromCsvResponse!
@@ -549,21 +574,38 @@ type Mutation {
 }
 
 type Order {
+  city: String
+  country: String
   createdAt: DateTime!
   id: ID!
+  line1: String
+  line2: String
   orderStatus: OrderStatus!
-  products: [Product!]!
-  shipToAddress: Address!
+  postalCode: String
+  products: [Product!]
+  state: String
   updatedAt: DateTime!
-  user: User!
+  user: User
 }
 
 # Order status
 enum OrderStatus {
+  # order freshly created.
+  CREATED
+
+  # order complete
   FULFILLED
+
+  # payment received from customer
   PAID
+
+  # order placed with lab
   PLACED
+
+  # problem with order, see notes
   PROBLEM
+
+  # lab shipped order
   SHIPPED
 }
 
@@ -745,6 +787,8 @@ type Product {
   photo: Photo!
   print: Print!
   productSummary: String!
+  removedAt: DateTime
+  removedBy: User
   shoppingBag: User
   totalRetailPrice: Float!
   updatedAt: DateTime!
@@ -777,6 +821,7 @@ type ProductImage {
 
 type Query {
   allFeaturedPhotos: AllFeaturedPhotosResponse!
+  allOrders: [Order!]!
   allPhotosAtLocation(input: AllPhotosAtLocationInput!): AllPhotosAtLocationResponse!
   allPhotosByPhotographer(input: AllPhotosByPhotographerInput!): AllPhotosByPhotographerResponse!
   allPhotosInCollection(input: AllPhotosInCollectionInput!): AllPhotosInCollectionResponse!
@@ -1182,6 +1227,30 @@ type UpdateMatsFromCsvResponse {
   updated: Int
 }
 
+input UpdateOrderInput {
+  city: String
+  country: String
+  line1: String
+  line2: String
+
+  # Current status of the order.
+  orderStatus: OrderStatus
+  postalCode: String
+
+  # IDs of products on the order.
+  productIds: [Int!]
+  state: String
+
+  # The user who placed the order.
+  userId: Int
+}
+
+type UpdateOrderResponse {
+  message: String!
+  success: Boolean!
+  updatedOrder: Order
+}
+
 input UpdatePhotoImageInput {
   altText: String
   fileExtension: String
@@ -1428,6 +1497,9 @@ type User {
   isSubscribed: Boolean!
   name: String!
   orders: [Order!]!
+
+  # Products added to bag and then removed by user.
+  removedProducts: [Product!]
   roles: [String!]!
   shoppingBagItems: [Product!]
   updatedAt: DateTime!
